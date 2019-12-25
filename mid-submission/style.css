@@ -91,6 +91,12 @@ img {
     margin-right: 10px;
 }
 
+.checkbox:hover {
+    background-size: 10px;
+    background-repeat: no-repeat;
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Check_mark_9x9.svg/768px-Check_mark_9x9.svg.png);
+}
+
 .task {
     height: fit-content;
     width: auto;
