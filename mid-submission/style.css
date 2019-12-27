@@ -28,10 +28,15 @@ img {
     height: 1em;
 }
 
+.search-options {
+    display: flex;
+    justify-content: center;
+}
+
 .search-bar {
     width: 200px;
     height: 1em;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     margin-top: 2em;
     display: block;
     border: 1px solid rgb(143, 138, 138);
@@ -49,7 +54,7 @@ img {
 }
 
 .todo-list {
-    max-width: 40%;
+    flex-basis: 40%;
     min-height: 70%;
     padding: 3%;
 }
@@ -60,6 +65,28 @@ img {
     text-align: center;
     padding: 2%;
 
+}
+
+.title-bar {
+    display: flex;
+    flex-basis: 100%;
+    justify-content: space-between;
+}
+
+.title {
+    font-size: 2em;
+    text-align: left;
+    width: fit-content;
+}
+
+.filter-options {
+    display: flex;
+    flex-basis: auto;
+}
+
+.option {
+    padding: 2%;
+    font-size: 0.9em;
 }
 
 .items-container {
