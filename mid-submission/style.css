@@ -74,8 +74,6 @@ img {
     display: flex;
     padding: 2%;
     margin-bottom: 1em;
-
-    font-family: 'Open Sans';
     background-color: white;
 
 }
@@ -96,13 +94,6 @@ img {
     background-size: 10px;
     background-repeat: no-repeat;
     background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Check_mark_9x9.svg/768px-Check_mark_9x9.svg.png);
-}
-
-.task {
-    height: fit-content;
-    width: auto;
-    margin-bottom: 10px;
-    overflow-wrap: break-word;
 }
 
 .add-button {
