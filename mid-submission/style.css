@@ -129,3 +129,20 @@ img {
     text-align: center;
     padding: 2%;
 }
+
+/* For add-task.html */
+.add-to-do div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+}
+
+#datepicker {
+    display: flex;
+    flex-direction: row;
+}
+
+#done {
+    display: flex;
+    justify-content: center;
+}
