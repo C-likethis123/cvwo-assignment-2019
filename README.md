@@ -1,24 +1,10 @@
-# README
+# cvwo-assignment-2019
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a ToDo list web app, created in React on Rails for the CVWO Winter Assignment 2019. 
 
-Things you may want to cover:
+Name: Chow Jia Ying
+Matriculation number: A0187457M
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Mid-submission deadline:
+Mid-submission documents are in the mid-submission folder.
+I do not have a working application for now, attempts to follow tutorials are in separate branches in this repository.
