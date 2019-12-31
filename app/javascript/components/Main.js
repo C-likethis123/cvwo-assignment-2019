@@ -1,12 +1,15 @@
-import React from "react"
+import React from "react";
+import AllLists from './AllLists';
+
 class Main extends React.Component {
-  render () {
+  render() {
     return (
-      <React.Fragment>
-        Test
-      </React.Fragment>
+      <div>
+        <div>To Do List App</div>
+        <AllLists />
+      </div>
     );
   }
 }
 
-export default Main
+export default Main;
