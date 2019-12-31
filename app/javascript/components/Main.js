@@ -1,12 +1,12 @@
 import React from "react";
-import AllFruits from "./AllFruits"
+import Body from "./Body"
 
 class Main extends React.Component {
     render() {
         return (
             <div>
                 <h1>Fruits are great!</h1>
-                <AllFruits />
+                <Body />
             </div>
         );
     }

@@ -1,5 +1,5 @@
 import React from "react";
-
+import AllFruits from "./AllFruits"
 class Body extends React.Component {
     constructor(props) {
         super(props);
@@ -22,3 +22,5 @@ class Body extends React.Component {
         )
     }
 }
+
+export default Body
