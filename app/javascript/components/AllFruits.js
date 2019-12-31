@@ -1,4 +1,5 @@
 import React from "react";
+import Fruit from './Fruit';
 
 class AllFruits extends React.Component {
     
@@ -6,8 +7,7 @@ class AllFruits extends React.Component {
         var fruits = this.props.fruits.map((fruit) => {
          return(
           <div key={fruit.id}>
-           <h1>{fruit.name}</h1>
-           <p>{fruit.description}</p>
+           <Fruit fruit={fruit} handleDelete={this.props.handleDelete}/>
           </div>
          )
         })
