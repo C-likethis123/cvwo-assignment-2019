@@ -11,6 +11,7 @@ class Body extends React.Component {
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.addNewFruit = this.addNewFruit.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.deleteFruit = this.deleteFruit.bind(this);
     }
 
     handleFormSubmit(name, description) {
@@ -34,7 +35,13 @@ class Body extends React.Component {
     addNewFruit(fruit) {
         this.setState({
             fruits: this.state.fruits.concat(fruit)
-        })
+        });
+    }
+
+    deleteFruit(id) {
+        this.setState({
+            fruits: this.state.fruits.filter((fruit) => fruit.id !== id)
+        });
     }
 
     handleDelete(id) {
@@ -43,7 +50,7 @@ class Body extends React.Component {
             headers: {
                 'Content-Type': 'application/json',
             }
-        }).then((response) => console.log('Item was deleted!'));
+        }).then((response) => this.deleteFruit(id));
     }
 
     componentDidMount() {
