@@ -12,12 +12,18 @@ class Api::V1::TasksController < ApplicationController
     end
 
     def update
+        @list = List.find(params[:list_id])
+        @task = @list.tasks.find(params[:id])
+        if @task.update(task_params)
+            render json: @task
+        end
     end
 
     def delete
     end
     
     private def task_params
-        params.require(:task).permit(:title, :description, :deadline, :tags)
+        params.require(:task).permit(:title, :description, :deadline, :tags,
+        :id, :isCompleted, :list_id, :created_at, :updated_at, :isDailies)
     end
 end
