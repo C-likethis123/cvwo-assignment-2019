@@ -30,9 +30,7 @@ class List extends React.Component {
   }
 
   handleUpdate(task) {
-    //   console.log(task.id);
-    //   console.log(this.props.id);
-    fetch(`http://localhost:3000/api/v1/lists/${this.props.id}/tasks/${task.id}.json`, {
+    fetch(`http://localhost:3000/api/v1/lists/${this.props.id}/tasks/${task.id}`, {
         method: 'PUT',
         headers: {
           "Content-Type": "application/json"
