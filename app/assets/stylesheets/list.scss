@@ -1,3 +1,27 @@
 // Place all the styles related to the List controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.list-display {
+  display: flex;
+  justify-content: center;
+}
+
+.todo-list {
+  width: 40%;
+  height: 70%;
+  padding: 3%;
+}
+
+.todo-list-title {
+  background-color: #7dd386;
+  font-weight: bold;
+  text-align: center;
+  padding: 2%;
+}
+
+.items-container {
+  background-color: #f4f4f4;
+  height: 90%;
+  padding: 1em;
+}
