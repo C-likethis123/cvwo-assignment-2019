@@ -5,7 +5,7 @@ class Main extends React.Component {
   render() {
     return (
       <div>
-        <div>To Do List App</div>
+        <h1>To do: List of tasks</h1>
         <AllLists />
       </div>
     );

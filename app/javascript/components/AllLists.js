@@ -1,4 +1,6 @@
 import React from "react";
+import List from "./List";
+
 class AllLists extends React.Component {
   constructor(props) {
     super(props);
@@ -13,26 +15,15 @@ class AllLists extends React.Component {
         return response.json();
       })
       .then(data => {
-          console.log(data);
         this.setState({ lists: data });
       });
   }
 
   render() {
-      let lists = this.state.lists.map((list) => {
-          return(
-              <div key={list.id}>
-                  <h1>{list.title}</h1>
-                  <p>{list.key}</p>
-              </div>
-          )
-      })
-    return (
-      <div>
-        <h1>To do: List of tasks</h1>
-        {lists}
-      </div>
-    );
+    let lists = this.state.lists.map(list => {
+      return <List key={list.id} id={list.id} title={list.title} />;
+    });
+    return <div className="list-display">{lists}</div>;
   }
 }
 
