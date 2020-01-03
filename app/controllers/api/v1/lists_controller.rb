@@ -19,6 +19,6 @@ class Api::V1::ListsController < ApplicationController
     end
     
     private def list_params
-        params.require(:fruit).permit(:id, :name, :description)
+        params.require(:list).permit(:id, :name, :description)
     end
 end
