@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyString
+  deadline: 2020-01-03 17:08:39
+  isCompleted: 
+  tags: MyString
+  list: one
+
+two:
+  title: MyString
+  description: MyString
+  deadline: 2020-01-03 17:08:39
+  isCompleted: 
+  tags: MyString
+  list: two
