@@ -21,7 +21,7 @@ class AddTaskForm extends React.Component {
   };
 
   handleSubmit = () => {
-    this.props.addTaskToList(this.state.title);
+    this.props.addTaskToList(this.state.title, this.state.description);
     this.setState({ isModalOpen: false });
   };
 
@@ -48,6 +48,13 @@ class AddTaskForm extends React.Component {
               id="title"
               label="Title of Task"
               placeholder="Enter your task here"
+              onChange={this.handleChange}
+            />
+            <Form.Field
+              control={Input}
+              id="description"
+              label="Description of Task"
+              placeholder="Enter the task description"
               onChange={this.handleChange}
             />
           </Form>
