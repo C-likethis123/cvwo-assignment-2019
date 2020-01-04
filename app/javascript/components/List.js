@@ -55,16 +55,13 @@ class List extends React.Component {
       }
     });
 
-    fetch(
-      `http://localhost:3000/api/v1/lists/${this.props.id}/tasks`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: task
-      }
-    )
+    fetch(`http://localhost:3000/api/v1/lists/${this.props.id}/tasks`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: task
+    })
       .then(response => response.json())
       .then(task => {
         this.setState({
@@ -87,7 +84,9 @@ class List extends React.Component {
       <div className="todo-list" key={this.props.id}>
         <div className="todo-list-title">{this.props.title}</div>
         <div className="items-container">{tasks}</div>
-        <AddTaskForm addTaskToList={this.addTaskToList} />
+        <AddTaskForm
+          addTaskToList={this.addTaskToList}
+        />
       </div>
     );
   }

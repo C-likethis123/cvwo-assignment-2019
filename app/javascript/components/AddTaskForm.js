@@ -5,23 +5,41 @@ class AddTaskForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        title: '',
-    }
+      title: "",
+      isModalOpen: false
+    };
   }
 
   handleChange = () => {
-      const value = event.target.value;
-      const attribute = event.target.id;
-      const changedValue = {
-          [attribute]: value,
-      }
+    const value = event.target.value;
+    const attribute = event.target.id;
+    const changedValue = {
+      [attribute]: value
+    };
 
-      this.setState(changedValue);
-  }
+    this.setState(changedValue);
+  };
+
+  handleSubmit = () => {
+    this.props.addTaskToList(this.state.title);
+    this.setState({ isModalOpen: false });
+  };
+
+  handleOpen = () => {
+    console.log("handleOpen");
+    this.setState({ isModalOpen: true });
+  };
 
   render() {
     return (
-      <Modal trigger={<Button className="add-button">Add a Task</Button>}>
+      <Modal
+        trigger={
+          <Button className="add-button" onClick={() => this.handleOpen()}>
+            Add a Task
+          </Button>
+        }
+        open={this.state.isModalOpen}
+      >
         <Modal.Header>Add a Task</Modal.Header>
         <Modal.Content>
           <Form>
@@ -33,9 +51,9 @@ class AddTaskForm extends React.Component {
               onChange={this.handleChange}
             />
           </Form>
-          <Form.Field control={Button} onClick={() => this.props.addTaskToList(this.state.title)}>
-              Submit
-            </Form.Field>
+          <Form.Field control={Button} onClick={() => this.handleSubmit()}>
+            Submit
+          </Form.Field>
         </Modal.Content>
       </Modal>
     );
