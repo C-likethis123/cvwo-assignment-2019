@@ -1,11 +1,16 @@
 import React from "react";
 import { Modal, Button, Form, Input } from "semantic-ui-react";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 class AddTaskForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       title: "",
+      description: "",
+      date: new Date(),
       isModalOpen: false
     };
   }
@@ -21,12 +26,15 @@ class AddTaskForm extends React.Component {
   };
 
   handleSubmit = () => {
-    this.props.addTaskToList(this.state.title, this.state.description);
+    this.props.addTaskToList(
+      this.state.title,
+      this.state.description,
+      this.state.date
+    );
     this.setState({ isModalOpen: false });
   };
 
   handleOpen = () => {
-    console.log("handleOpen");
     this.setState({ isModalOpen: true });
   };
 
@@ -57,7 +65,20 @@ class AddTaskForm extends React.Component {
               placeholder="Enter the task description"
               onChange={this.handleChange}
             />
+
+            <Form.Field
+              control={DatePicker}
+              id="deadline"
+              label="Deadline of Task"
+              selected={this.state.date}
+              placeholder="Click here to select a date"
+              todayButton="today"
+              onChange={date => {
+                this.setState({ date: date });
+              }}
+            />
           </Form>
+
           <Form.Field control={Button} onClick={() => this.handleSubmit()}>
             Submit
           </Form.Field>
