@@ -1,6 +1,8 @@
 import React from "react";
-import Task from "./Task";
 import {Button} from "semantic-ui-react";
+import Task from "./Task";
+import AddTaskForm from "./AddTaskForm";
+
 
 class List extends React.Component {
   constructor(props) {
@@ -58,7 +60,8 @@ class List extends React.Component {
       <div className="todo-list" key={this.props.id}>
         <div className="todo-list-title">{this.props.title}</div>
         <div className="items-container">{tasks}</div>
-        <Button className="add-button">Add a Task</Button>
+        {/* <Button className="add-button">Add a Task</Button> */}
+        <AddTaskForm />
       </div>
     );
   }
