@@ -43,14 +43,14 @@ class List extends React.Component {
     ).then(() => this.updateTask(task));
   }
 
-  addTaskToList = (title, description, deadline) => {
+  addTaskToList = (title, description, deadline, tags) => {
     let task = JSON.stringify({
       task: {
         title: title,
         description: description,
         deadline: deadline,
         isCompleted: false,
-        tags: "",
+        tags: tags,
         isDailies: this.props.title === "Dailies"
       }
     });

@@ -29,7 +29,8 @@ class AddTaskForm extends React.Component {
     this.props.addTaskToList(
       this.state.title,
       this.state.description,
-      this.state.date
+      this.state.date,
+      this.state.tags
     );
     this.setState({ isModalOpen: false });
   };
@@ -54,14 +55,14 @@ class AddTaskForm extends React.Component {
             <Form.Field
               control={Input}
               id="title"
-              label="Title of Task"
+              label="Title"
               placeholder="Enter your task here"
               onChange={this.handleChange}
             />
             <Form.Field
               control={Input}
               id="description"
-              label="Description of Task"
+              label="Description"
               placeholder="Enter the task description"
               onChange={this.handleChange}
             />
@@ -69,13 +70,20 @@ class AddTaskForm extends React.Component {
             <Form.Field
               control={DatePicker}
               id="deadline"
-              label="Deadline of Task"
+              label="Deadline"
               selected={this.state.date}
               placeholder="Click here to select a date"
               todayButton="today"
               onChange={date => {
                 this.setState({ date: date });
               }}
+            />
+            <Form.Field
+              control={Input}
+              id="tags"
+              label="Tags"
+              placeholder="Enter tags, separated by commas"
+              onChange={this.handleChange}
             />
           </Form>
 
