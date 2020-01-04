@@ -62,7 +62,9 @@ class List extends React.Component {
       },
       body: task
     })
-      .then(response => response.json())
+      .then(response => {
+        return response.json()
+      })
       .then(task => {
         this.setState({
           tasks: this.state.tasks.concat(task)

@@ -53,6 +53,7 @@ class AddTaskForm extends React.Component {
         <Modal.Content>
           <Form>
             <Form.Field
+              required
               control={Input}
               id="title"
               label="Title"
