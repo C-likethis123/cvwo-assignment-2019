@@ -1,8 +1,6 @@
 import React from "react";
-import {Button} from "semantic-ui-react";
 import Task from "./Task";
 import AddTaskForm from "./AddTaskForm";
-
 
 class List extends React.Component {
   constructor(props) {
@@ -25,33 +23,62 @@ class List extends React.Component {
   }
 
   updateTask(task) {
-    let newTasks = this.state.tasks.filter((currTask) => currTask.id !== task.id);
+    let newTasks = this.state.tasks.filter(currTask => currTask.id !== task.id);
     newTasks.push(task);
     this.setState({
-      task: newTasks,
+      task: newTasks
     });
   }
 
   handleUpdate(task) {
-    fetch(`http://localhost:3000/api/v1/lists/${this.props.id}/tasks/${task.id}`, {
-        method: 'PUT',
+    fetch(
+      `http://localhost:3000/api/v1/lists/${this.props.id}/tasks/${task.id}`,
+      {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json"
-        }, 
-        body: JSON.stringify({task: task}),
-      }).then(() => this.updateTask(task));
+        },
+        body: JSON.stringify({ task: task })
+      }
+    ).then(() => this.updateTask(task));
   }
+
+  addTaskToList = title => {
+    let task = JSON.stringify({
+      task: {
+        title: title,
+        description: "Something",
+        deadline: new Date(),
+        isCompleted: false,
+        tags: "",
+        isDailies: this.props.title === "Dailies"
+      }
+    });
+
+    fetch(
+      `http://localhost:3000/api/v1/lists/${this.props.id}/tasks`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: task
+      }
+    )
+      .then(response => response.json())
+      .then(task => {
+        this.setState({
+          tasks: this.state.tasks.concat(task)
+        });
+      });
+  };
 
   render() {
     let tasks = [];
     this.state.tasks.forEach(task => {
       if (!task.isCompleted) {
         tasks.push(
-          <Task
-            key={task.id}
-            task={task}
-            handleUpdate={this.handleUpdate}
-          />
+          <Task key={task.id} task={task} handleUpdate={this.handleUpdate} />
         );
       }
     });
@@ -60,8 +87,7 @@ class List extends React.Component {
       <div className="todo-list" key={this.props.id}>
         <div className="todo-list-title">{this.props.title}</div>
         <div className="items-container">{tasks}</div>
-        {/* <Button className="add-button">Add a Task</Button> */}
-        <AddTaskForm />
+        <AddTaskForm addTaskToList={this.addTaskToList} />
       </div>
     );
   }
