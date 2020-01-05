@@ -20,7 +20,7 @@ class Task extends React.Component {
         <Button icon size="mini">
           <Icon name="edit"></Icon>
         </Button>
-        <Button icon size="mini" color="red">
+        <Button icon size="mini" color="red" onClick={() => this.props.handleDelete(this.state)} >
           <Icon name="trash"></Icon>
         </Button>
       </div>

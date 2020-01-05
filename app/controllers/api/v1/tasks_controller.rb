@@ -19,7 +19,10 @@ class Api::V1::TasksController < ApplicationController
         end
     end
 
-    def delete
+    def destroy
+        @list = List.find(params[:list_id])
+        @task = @list.tasks.find(params[:id])
+        @task.destroy
     end
     
     private def task_params

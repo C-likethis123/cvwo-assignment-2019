@@ -63,7 +63,7 @@ class List extends React.Component {
       body: task
     })
       .then(response => {
-        return response.json()
+        return response.json();
       })
       .then(task => {
         this.setState({
@@ -72,12 +72,33 @@ class List extends React.Component {
       });
   };
 
+  handleDelete = task => {
+    fetch(
+      `http://localhost:3000/api/v1/lists/${this.props.id}/tasks/${task.id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }
+    ).then(() => {
+      this.setState({
+        tasks: this.state.tasks.filter(currTask => currTask.id !== task.id)
+      });
+    });
+  };
+
   render() {
     let tasks = [];
     this.state.tasks.forEach(task => {
       if (!task.isCompleted) {
         tasks.push(
-          <Task key={task.id} task={task} handleUpdate={this.handleUpdate} />
+          <Task
+            key={task.id}
+            task={task}
+            handleUpdate={this.handleUpdate}
+            handleDelete={this.handleDelete}
+          />
         );
       }
     });
@@ -86,9 +107,7 @@ class List extends React.Component {
       <div className="todo-list" key={this.props.id}>
         <div className="todo-list-title">{this.props.title}</div>
         <div className="items-container">{tasks}</div>
-        <AddTaskForm
-          addTaskToList={this.addTaskToList}
-        />
+        <AddTaskForm addTaskToList={this.addTaskToList} />
       </div>
     );
   }
