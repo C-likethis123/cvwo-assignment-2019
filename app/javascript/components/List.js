@@ -1,6 +1,6 @@
 import React from "react";
 import Task from "./Task";
-import AddTaskForm from "./AddTaskForm";
+import TaskModalWrapper from "./TaskModalWrapper";
 
 class List extends React.Component {
   constructor(props) {
@@ -107,7 +107,7 @@ class List extends React.Component {
       <div className="todo-list" key={this.props.id}>
         <div className="todo-list-title">{this.props.title}</div>
         <div className="items-container">{tasks}</div>
-        <AddTaskForm addTaskToList={this.addTaskToList} />
+        <TaskModalWrapper addTaskToList={this.addTaskToList} />
       </div>
     );
   }
