@@ -96,11 +96,18 @@ class AddTaskForm extends React.Component {
               placeholder="Enter tags, separated by commas"
               onChange={this.handleChange}
             />
+          <Form.Group inline>
+            <Form.Field control={Button} onClick={() => this.handleSubmit()}>
+              Submit
+            </Form.Field>
+            <Form.Field
+              control={Button}
+              onClick={() => this.setState({ isModalOpen: false })}
+            >
+              Cancel
+            </Form.Field>
+          </Form.Group>
           </Form>
-
-          <Form.Field control={Button} onClick={() => this.handleSubmit()}>
-            Submit
-          </Form.Field>
         </Modal.Content>
       </Modal>
     );
