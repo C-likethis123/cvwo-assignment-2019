@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Button, Form, Input, Message } from "semantic-ui-react";
+import { Modal, Button, Form, Input } from "semantic-ui-react";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -11,8 +11,7 @@ class AddTaskForm extends React.Component {
       title: "",
       description: "",
       date: new Date(),
-      isModalOpen: false,
-      hideError: true
+      isModalOpen: false
     };
   }
 
@@ -27,9 +26,7 @@ class AddTaskForm extends React.Component {
   };
 
   handleSubmit = () => {
-    if (this.state.title == "") {
-      this.setState({ hideError: false });
-    } else {
+    if (this.state.title) {
       this.props.addTaskToList(
         this.state.title,
         this.state.description,
@@ -56,12 +53,6 @@ class AddTaskForm extends React.Component {
         <Modal.Header>Add a Task</Modal.Header>
         <Modal.Content>
           <Form>
-            <Message
-              negative
-              hidden={this.state.hideError}
-              header="Invalid Input"
-              content="The task of the title cannot be blank"
-            />
             <Form.Field
               required
               control={Input}
@@ -77,7 +68,6 @@ class AddTaskForm extends React.Component {
               placeholder="Enter the task description"
               onChange={this.handleChange}
             />
-
             <Form.Field
               control={DatePicker}
               id="deadline"
@@ -96,17 +86,17 @@ class AddTaskForm extends React.Component {
               placeholder="Enter tags, separated by commas"
               onChange={this.handleChange}
             />
-          <Form.Group inline>
-            <Form.Field control={Button} onClick={() => this.handleSubmit()}>
-              Submit
-            </Form.Field>
-            <Form.Field
-              control={Button}
-              onClick={() => this.setState({ isModalOpen: false })}
-            >
-              Cancel
-            </Form.Field>
-          </Form.Group>
+            <Form.Group inline>
+              <Form.Field control={Button} onClick={() => this.handleSubmit()}>
+                Submit
+              </Form.Field>
+              <Form.Field
+                control={Button}
+                onClick={() => this.setState({ isModalOpen: false })}
+              >
+                Cancel
+              </Form.Field>
+            </Form.Group>
           </Form>
         </Modal.Content>
       </Modal>
