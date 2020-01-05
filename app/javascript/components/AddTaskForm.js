@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Button, Form, Input } from "semantic-ui-react";
+import { Modal, Button, Form, Input, Message } from "semantic-ui-react";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -11,7 +11,8 @@ class AddTaskForm extends React.Component {
       title: "",
       description: "",
       date: new Date(),
-      isModalOpen: false
+      isModalOpen: false,
+      hideError: true
     };
   }
 
@@ -26,24 +27,27 @@ class AddTaskForm extends React.Component {
   };
 
   handleSubmit = () => {
-    this.props.addTaskToList(
-      this.state.title,
-      this.state.description,
-      this.state.date,
-      this.state.tags
-    );
-    this.setState({ isModalOpen: false });
-  };
-
-  handleOpen = () => {
-    this.setState({ isModalOpen: true });
+    if (this.state.title == "") {
+      this.setState({ hideError: false });
+    } else {
+      this.props.addTaskToList(
+        this.state.title,
+        this.state.description,
+        this.state.date,
+        this.state.tags
+      );
+      this.setState({ isModalOpen: false });
+    }
   };
 
   render() {
     return (
       <Modal
         trigger={
-          <Button className="add-button" onClick={() => this.handleOpen()}>
+          <Button
+            className="add-button"
+            onClick={() => this.setState({ isModalOpen: true })}
+          >
             Add a Task
           </Button>
         }
@@ -52,6 +56,12 @@ class AddTaskForm extends React.Component {
         <Modal.Header>Add a Task</Modal.Header>
         <Modal.Content>
           <Form>
+            <Message
+              negative
+              hidden={this.state.hideError}
+              header="Invalid Input"
+              content="The task of the title cannot be blank"
+            />
             <Form.Field
               required
               control={Input}
