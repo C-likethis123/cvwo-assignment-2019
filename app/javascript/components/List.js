@@ -1,6 +1,6 @@
 import React from "react";
 import Task from "./Task";
-import TaskModalWrapper from "./TaskModalWrapper";
+import AddTaskForm from "./AddTaskForm";
 
 class List extends React.Component {
   constructor(props) {
