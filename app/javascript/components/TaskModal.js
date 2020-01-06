@@ -94,12 +94,12 @@ class TaskModal extends React.Component {
               onChange={this.handleChange}
             />
             <Form.Group inline>
-              <Form.Field control={Button} onClick={() => this.handleSubmit()}>
+              <Form.Field control={Button} onClick={this.handleSubmit}>
                 Submit
               </Form.Field>
               <Form.Field
                 control={Button}
-                onClick={() => this.props.handleClose()}
+                onClick={this.props.handleClose}
               >
                 Cancel
               </Form.Field>

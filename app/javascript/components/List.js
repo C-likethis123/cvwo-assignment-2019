@@ -91,7 +91,7 @@ class List extends React.Component {
     });
   };
 
-  openModal = (task, isEditable) => {
+  handleOpen = (task, isEditable) => {
     this.setState({
       isModalOpen: true,
       isEditable: isEditable,
@@ -99,7 +99,7 @@ class List extends React.Component {
     });
   };
 
-  closeModal = () => {
+  handleClose = () => {
     this.setState({ isModalOpen: false });
   };
 
@@ -113,7 +113,7 @@ class List extends React.Component {
             task={task}
             handleUpdate={this.handleUpdate}
             handleDelete={this.handleDelete}
-            openModal={this.openModal}
+            handleOpen={this.handleOpen}
           />
         );
       }
@@ -127,8 +127,8 @@ class List extends React.Component {
           isEditable={this.state.isEditable}
           handleAdd={this.handleAdd}
           isModalOpen={this.state.isModalOpen}
-          openModal={this.openModal}
-          closeModal={this.closeModal}
+          handleOpen={this.handleOpen}
+          handleClose={this.handleClose}
           taskToEdit={this.state.taskToEdit}
           handleUpdate={this.handleUpdate}
         />
