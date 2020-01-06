@@ -1,6 +1,6 @@
 import React from "react";
 import Task from "./Task";
-import AddTaskForm from "./AddTaskForm";
+import TaskModalWrapper from "./TaskModalWrapper";
 
 class List extends React.Component {
   constructor(props) {
@@ -47,35 +47,17 @@ class List extends React.Component {
       },
       body: task
     })
-      .then((response) => {
+      .then(response => {
         return response.json();
       })
-      .then((task) => {
+      .then(task => {
         this.setState({
           tasks: this.state.tasks.concat(task)
         });
       });
   };
 
-  handleUpdate = (task) => {
-    fetch(`http://localhost:3000/api/v1/lists/${this.props.id}/tasks/${task.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({task: task}),
-    }).then(() => {
-      const prevTask = this.state.tasks.find((currTask) => task.id === currTask.id);
-      const indexOfTask = this.state.tasks.indexOf(prevTask);
-      console.log(indexOfTask);
-
-      const newState = Object.assign({}, this.state);
-      newState.tasks[indexOfTask] = task;
-      this.setState(newState);
-    })
-  };
-
-  handleDelete = (task) => {
+  handleDelete = task => {
     fetch(
       `http://localhost:3000/api/v1/lists/${this.props.id}/tasks/${task.id}`,
       {
@@ -86,21 +68,35 @@ class List extends React.Component {
       }
     ).then(() => {
       this.setState({
-        tasks: this.state.tasks.filter((currTask) => currTask.id !== task.id)
+        tasks: this.state.tasks.filter(currTask => currTask.id !== task.id)
       });
     });
   };
 
-  handleOpen = (task, isEditable) => {
-    this.setState({
-      isModalOpen: true,
-      isEditable: isEditable,
-      taskToEdit: task
-    });
-  };
+  handleUpdate = task => {
+    console.log("updateTask is called!");
+    fetch(
+      `http://localhost:3000/api/v1/lists/${this.props.id}/tasks/${task.id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ task: task })
+      }
+    ).then(() => {
+      this.setState(prevState => {
+        const prevTasks = [...prevState.tasks];
 
-  handleClose = () => {
-    this.setState({ isModalOpen: false });
+        const indexOfTask = prevTasks.findIndex(
+          currTask => currTask.id === task.id
+        );
+        prevTasks[indexOfTask] = Object.assign({}, task);
+        return {
+          tasks: prevTasks
+        };
+      });
+    });
   };
 
   render() {
@@ -111,9 +107,8 @@ class List extends React.Component {
           <Task
             key={task.id}
             task={task}
-            handleUpdate={this.handleUpdate}
             handleDelete={this.handleDelete}
-            handleOpen={this.handleOpen}
+            handleUpdate={this.handleUpdate}
           />
         );
       }
@@ -127,10 +122,6 @@ class List extends React.Component {
           isEditable={this.state.isEditable}
           handleAdd={this.handleAdd}
           isModalOpen={this.state.isModalOpen}
-          handleOpen={this.handleOpen}
-          handleClose={this.handleClose}
-          taskToEdit={this.state.taskToEdit}
-          handleUpdate={this.handleUpdate}
         />
       </div>
     );

@@ -4,12 +4,16 @@ import { Checkbox, Button, Icon } from "semantic-ui-react";
 class Task extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.props.task;
+    this.state = Object.assign({}, this.props.task);
   }
 
   handleClick = (e, { checked }) => {
-    this.state.isCompleted = checked;
-    this.props.handleUpdate(this.state);
+    this.setState(() => ({
+      isCompleted: checked,
+    }), () => {
+      const updatedTask = Object.assign({}, this.state);
+      this.props.handleUpdate(updatedTask);
+    });
   };
 
   render() {
@@ -20,7 +24,7 @@ class Task extends React.Component {
         <Button
           icon
           size="mini"
-          onClick={() => this.props.handleOpen(this.state, true)}
+          onClick={() => /* open here */{} }
         >
           <Icon name="edit"></Icon>
         </Button>

@@ -7,31 +7,19 @@ class TaskModalWrapper extends React.Component {
     super(props);
   }
 
-  defaultTask = () => {
-    return {
-      title: "",
-      description: "",
-      date: new Date(),
-      tags: ""
-    };
-  };
-
   render() {
     return (
       <div>
         <Button
           className="add-button"
-          onClick={() => this.props.handleOpen(this.defaultTask(), false)}
+          onClick={() => /* open modal here*/ {} }
         >
           Add a Task
         </Button>
         <TaskModal
           isEditable={this.props.isEditable}
           isModalOpen={this.props.isModalOpen}
-          handleClose={this.props.handleClose}
           handleAdd={this.props.handleAdd}
-          taskToEdit={this.props.taskToEdit}
-          handleUpdate={this.props.handleUpdate}
         />
       </div>
     );

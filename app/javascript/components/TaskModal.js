@@ -8,49 +8,9 @@ class TaskModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      taskToEdit: {},
       isModalOpen: false
     };
   }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.taskToEdit !== this.props.taskToEdit) {
-      this.setState({
-        taskToEdit: this.props.taskToEdit
-      });
-    }
-  }
-
-  handleChange = () => {
-    const attribute = event.target.id;
-    const changedValue =
-      attribute === "deadline" ? event.target.selected : event.target.value;
-    const changedValueObject = {
-      [attribute]: changedValue
-    };
-
-    // replace the property value in taskToEdit with the new value in changedValue
-    Object.assign(this.state.taskToEdit, changedValueObject);
-    // forces a re-render
-    this.setState(this.state);
-  };
-
-  handleSubmit = () => {
-    if (this.state.taskToEdit.title) {
-      if (this.props.isEditable) {
-        this.props.handleUpdate(this.props.taskToEdit);
-      } else {
-        this.props.handleAdd(
-          this.state.taskToEdit.title,
-          this.state.taskToEdit.description,
-          this.state.taskToEdit.date,
-          this.state.taskToEdit.tags
-        );
-      }
-
-      this.props.handleClose();
-    }
-  };
 
   render() {
     return (
@@ -65,7 +25,6 @@ class TaskModal extends React.Component {
               control={Input}
               id="title"
               label="Title"
-              value={this.state.taskToEdit.title}
               placeholder="Enter your task here"
               onChange={this.handleChange}
             />
@@ -73,7 +32,6 @@ class TaskModal extends React.Component {
               control={Input}
               id="description"
               label="Description"
-              value={this.state.taskToEdit.description}
               placeholder="Enter the task description"
               onChange={this.handleChange}
             />
@@ -81,7 +39,6 @@ class TaskModal extends React.Component {
               control={DatePicker}
               id="deadline"
               label="Deadline"
-              selected={this.state.taskToEdit.date}
               placeholder="Click here to select a date"
               onChange={this.handleChange}
             />
@@ -89,12 +46,11 @@ class TaskModal extends React.Component {
               control={Input}
               id="tags"
               label="Tags"
-              value={this.state.taskToEdit.tags}
               placeholder="Enter tags, separated by commas"
               onChange={this.handleChange}
             />
             <Form.Group inline>
-              <Form.Field control={Button} onClick={this.handleSubmit}>
+              <Form.Field control={Button} >
                 Submit
               </Form.Field>
               <Form.Field
