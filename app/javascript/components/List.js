@@ -6,7 +6,15 @@ class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tasks: []
+      tasks: [],
+      isModalOpen: false,
+      isEditable: false,
+      taskToEdit: {
+        title: "",
+        description: "",
+        date: new Date(),
+        tags: ""
+      }
     };
     this.updateTask = this.updateTask.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
@@ -72,6 +80,24 @@ class List extends React.Component {
       });
   };
 
+  editTask = (task) => {
+    fetch(`http://localhost:3000/api/v1/lists/${this.props.id}/tasks/${task.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({task: task}),
+    }).then(() => {
+      const prevTask = this.state.tasks.find((currTask) => task.id === currTask.id);
+      const indexOfTask = this.state.tasks.indexOf(prevTask);
+      console.log(indexOfTask);
+
+      const newState = Object.assign({}, this.state);
+      newState.tasks[indexOfTask] = task;
+      this.setState(newState);
+    })
+  };
+
   handleDelete = task => {
     fetch(
       `http://localhost:3000/api/v1/lists/${this.props.id}/tasks/${task.id}`,
@@ -88,6 +114,18 @@ class List extends React.Component {
     });
   };
 
+  openModal = (task, isEditable) => {
+    this.setState({
+      isModalOpen: true,
+      isEditable: isEditable,
+      taskToEdit: task
+    });
+  };
+
+  closeModal = () => {
+    this.setState({ isModalOpen: false });
+  };
+
   render() {
     let tasks = [];
     this.state.tasks.forEach(task => {
@@ -98,6 +136,7 @@ class List extends React.Component {
             task={task}
             handleUpdate={this.handleUpdate}
             handleDelete={this.handleDelete}
+            openModal={this.openModal}
           />
         );
       }
@@ -107,7 +146,15 @@ class List extends React.Component {
       <div className="todo-list" key={this.props.id}>
         <div className="todo-list-title">{this.props.title}</div>
         <div className="items-container">{tasks}</div>
-        <TaskModalWrapper addTaskToList={this.addTaskToList} />
+        <TaskModalWrapper
+          isEditable={this.state.isEditable}
+          addTaskToList={this.addTaskToList}
+          isModalOpen={this.state.isModalOpen}
+          openModal={this.openModal}
+          closeModal={this.closeModal}
+          taskToEdit={this.state.taskToEdit}
+          editTask={this.editTask}
+        />
       </div>
     );
   }
