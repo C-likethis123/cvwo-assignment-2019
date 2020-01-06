@@ -38,7 +38,7 @@ class TaskModal extends React.Component {
   handleSubmit = () => {
     if (this.state.taskToEdit.title) {
       if (this.props.isEditable) {
-        this.props.editTask(this.props.taskToEdit);
+        this.props.handleUpdate(this.props.taskToEdit);
       } else {
         this.props.addTaskToList(
           this.state.taskToEdit.title,

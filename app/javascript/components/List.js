@@ -16,8 +16,6 @@ class List extends React.Component {
         tags: ""
       }
     };
-    this.updateTask = this.updateTask.bind(this);
-    this.handleUpdate = this.handleUpdate.bind(this);
   }
 
   componentDidMount() {
@@ -28,27 +26,6 @@ class List extends React.Component {
       .then(data => {
         this.setState({ tasks: data });
       });
-  }
-
-  updateTask(task) {
-    let newTasks = this.state.tasks.filter(currTask => currTask.id !== task.id);
-    newTasks.push(task);
-    this.setState({
-      task: newTasks
-    });
-  }
-
-  handleUpdate(task) {
-    fetch(
-      `http://localhost:3000/api/v1/lists/${this.props.id}/tasks/${task.id}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ task: task })
-      }
-    ).then(() => this.updateTask(task));
   }
 
   addTaskToList = (title, description, deadline, tags) => {
@@ -80,7 +57,7 @@ class List extends React.Component {
       });
   };
 
-  editTask = (task) => {
+  handleUpdate = (task) => {
     fetch(`http://localhost:3000/api/v1/lists/${this.props.id}/tasks/${task.id}`, {
       method: "PUT",
       headers: {
@@ -153,7 +130,7 @@ class List extends React.Component {
           openModal={this.openModal}
           closeModal={this.closeModal}
           taskToEdit={this.state.taskToEdit}
-          editTask={this.editTask}
+          handleUpdate={this.handleUpdate}
         />
       </div>
     );
