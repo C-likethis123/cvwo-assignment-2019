@@ -28,7 +28,7 @@ class List extends React.Component {
       });
   }
 
-  addTaskToList = (title, description, deadline, tags) => {
+  handleAdd = (title, description, deadline, tags) => {
     let task = JSON.stringify({
       task: {
         title: title,
@@ -47,10 +47,10 @@ class List extends React.Component {
       },
       body: task
     })
-      .then(response => {
+      .then((response) => {
         return response.json();
       })
-      .then(task => {
+      .then((task) => {
         this.setState({
           tasks: this.state.tasks.concat(task)
         });
@@ -75,7 +75,7 @@ class List extends React.Component {
     })
   };
 
-  handleDelete = task => {
+  handleDelete = (task) => {
     fetch(
       `http://localhost:3000/api/v1/lists/${this.props.id}/tasks/${task.id}`,
       {
@@ -86,7 +86,7 @@ class List extends React.Component {
       }
     ).then(() => {
       this.setState({
-        tasks: this.state.tasks.filter(currTask => currTask.id !== task.id)
+        tasks: this.state.tasks.filter((currTask) => currTask.id !== task.id)
       });
     });
   };
@@ -125,7 +125,7 @@ class List extends React.Component {
         <div className="items-container">{tasks}</div>
         <TaskModalWrapper
           isEditable={this.state.isEditable}
-          addTaskToList={this.addTaskToList}
+          handleAdd={this.handleAdd}
           isModalOpen={this.state.isModalOpen}
           openModal={this.openModal}
           closeModal={this.closeModal}

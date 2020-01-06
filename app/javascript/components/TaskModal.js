@@ -40,7 +40,7 @@ class TaskModal extends React.Component {
       if (this.props.isEditable) {
         this.props.handleUpdate(this.props.taskToEdit);
       } else {
-        this.props.addTaskToList(
+        this.props.handleAdd(
           this.state.taskToEdit.title,
           this.state.taskToEdit.description,
           this.state.taskToEdit.date,

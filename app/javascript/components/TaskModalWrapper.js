@@ -29,7 +29,7 @@ class TaskModalWrapper extends React.Component {
           isEditable={this.props.isEditable}
           isModalOpen={this.props.isModalOpen}
           handleClose={() => this.props.closeModal()}
-          addTaskToList={this.props.addTaskToList}
+          handleAdd={this.props.handleAdd}
           taskToEdit={this.props.taskToEdit}
           handleUpdate={this.props.handleUpdate}
         />
