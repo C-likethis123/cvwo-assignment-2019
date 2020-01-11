@@ -24,25 +24,34 @@ class Task extends React.Component {
   };
 
   updateTask = (title, description, deadline, tags) => {
-    this.setState((prevState, prevProps) => {
-      return {
-        task: Object.assign(prevState.task, {
-          title: title,
-          description: description,
-          deadline: deadline,
-          tags: tags
-        })
-      };
-    }, () => {
-      this.props.handleUpdate(Object.assign({}, this.state.task));
-    });
+    this.setState(
+      (prevState, prevProps) => {
+        return {
+          task: Object.assign(prevState.task, {
+            title: title,
+            description: description,
+            deadline: deadline,
+            tags: tags
+          })
+        };
+      },
+      () => {
+        this.props.handleUpdate(Object.assign({}, this.state.task));
+      }
+    );
   };
 
   render() {
     return (
       <div className="item" key={this.props.task.id}>
         <Checkbox onClick={this.handleClick} />
-        {this.props.task.title}
+        <div className="content-display">
+          <div>{this.props.task.title}</div>
+          <div className="other-info">{this.props.task.description}</div>
+          <div className="other-info">{this.props.task.deadline.toString()}</div>
+          <div className="other-info">{this.props.task.tags}</div>
+        </div>
+
         <Button
           icon
           size="mini"

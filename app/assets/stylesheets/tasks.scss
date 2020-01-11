@@ -13,3 +13,12 @@
     word-break: break-all;
     overflow-wrap: break-word;
 }
+
+.content-display {
+    display: flex;
+    flex-direction: column;
+}
+
+.other-info {
+    color: grey;
+}
