@@ -9,10 +9,13 @@ class TaskModal extends React.Component {
     super(props);
     this.state = {
       isModalOpen: false,
-      title: "",
-      description: "",
-      deadline: new Date(),
-      tags: ""
+      title: this.props.title || "",
+      description: this.props.description || "",
+      deadline:
+        this.props.deadline === undefined
+          ? new Date()
+          : new Date(this.props.deadline),
+      tags: this.props.tags || ""
     };
   }
 
@@ -29,7 +32,13 @@ class TaskModal extends React.Component {
   handleSubmit = () => {
     if (this.state.title) {
       if (this.props.isEditable) {
-        // do edit
+        this.props.updateTask(
+          this.state.title,
+          this.state.description,
+          this.state.deadline,
+          this.state.tags
+        );
+        this.props.handleClose();
       } else {
         this.props.handleAdd(
           this.state.title,
@@ -74,7 +83,7 @@ class TaskModal extends React.Component {
               selected={this.state.deadline}
               placeholder="Click here to select a date"
               onChange={date => {
-                this.setState({ deadline: date });
+                this.setState({ deadline: new Date(date) });
               }}
             />
             <Form.Field
@@ -86,7 +95,9 @@ class TaskModal extends React.Component {
               onChange={this.handleChange}
             />
             <Form.Group inline>
-              <Form.Field control={Button} onClick={this.handleSubmit}>Submit</Form.Field>
+              <Form.Field control={Button} onClick={this.handleSubmit}>
+                Submit
+              </Form.Field>
               <Form.Field control={Button} onClick={this.props.handleClose}>
                 Cancel
               </Form.Field>

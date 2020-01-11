@@ -74,7 +74,6 @@ class List extends React.Component {
   };
 
   handleUpdate = task => {
-    console.log("updateTask is called!");
     fetch(
       `http://localhost:3000/api/v1/lists/${this.props.id}/tasks/${task.id}`,
       {

@@ -7,17 +7,35 @@ class Task extends React.Component {
     super(props);
     this.state = {
       task: Object.assign({}, this.props.task),
-      isModalOpen: false,
-    }
+      isModalOpen: false
+    };
   }
 
   handleClick = (e, { checked }) => {
-    this.setState(() => ({
-      isCompleted: checked,
-    }), () => {
-      const updatedTask = Object.assign({}, this.state);
-      this.props.handleUpdate(updatedTask);
+    this.setState(
+      () => ({
+        isCompleted: checked
+      }),
+      () => {
+        const updatedTask = Object.assign({}, this.state);
+        this.props.handleUpdate(updatedTask);
+      }
+    );
+  };
+
+  updateTask = (title, description, deadline, tags) => {
+    this.setState((prevState, prevProps) => {
+      return {
+        task: Object.assign(prevState.task, {
+          title: title,
+          description: description,
+          deadline: deadline,
+          tags: tags
+        })
+      };
     });
+
+    this.props.handleUpdate(Object.assign({}, this.state.task));
   };
 
   render() {
@@ -28,7 +46,7 @@ class Task extends React.Component {
         <Button
           icon
           size="mini"
-          onClick={() => this.setState({isModalOpen: true}) }
+          onClick={() => this.setState({ isModalOpen: true })}
         >
           <Icon name="edit"></Icon>
         </Button>
@@ -41,10 +59,15 @@ class Task extends React.Component {
           <Icon name="trash"></Icon>
         </Button>
         <TaskModal
+          title={this.state.task.title}
+          description={this.state.task.description}
+          deadline={this.state.task.deadline}
+          description={this.state.task.description}
           isEditable={true}
           isModalOpen={this.state.isModalOpen}
           handleAdd={this.props.handleAdd}
-          handleClose={() => this.setState({isModalOpen: false})}
+          updateTask={this.updateTask}
+          handleClose={() => this.setState({ isModalOpen: false })}
         />
       </div>
     );
