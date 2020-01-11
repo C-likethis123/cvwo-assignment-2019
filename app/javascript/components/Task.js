@@ -1,6 +1,7 @@
 import React from "react";
 import { Checkbox, Button, Icon } from "semantic-ui-react";
 import TaskModal from "./TaskModal";
+import dateformat from "dateformat";
 
 class Task extends React.Component {
   constructor(props) {
@@ -9,6 +10,10 @@ class Task extends React.Component {
       task: Object.assign({}, this.props.task),
       isModalOpen: false
     };
+  }
+
+  displayDate(date) {
+    return dateformat(date, "yyyy-mm-dd");
   }
 
   handleClick = (e, { checked }) => {
@@ -48,7 +53,7 @@ class Task extends React.Component {
         <div className="content-display">
           <div>{this.props.task.title}</div>
           <div className="other-info">{this.props.task.description}</div>
-          <div className="other-info">{this.props.task.deadline.toString()}</div>
+          <div className="other-info">{this.displayDate(this.props.task.deadline)}</div>
           <div className="other-info">{this.props.task.tags}</div>
         </div>
 
