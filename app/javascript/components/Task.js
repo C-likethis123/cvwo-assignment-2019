@@ -52,9 +52,9 @@ class Task extends React.Component {
         <Checkbox onClick={this.handleClick} />
         <div className="content-display">
           <div>{this.props.task.title}</div>
-          <div className="other-info">{this.props.task.description}</div>
-          <div className="other-info">{this.displayDate(this.props.task.deadline)}</div>
-          <div className="other-info">{this.props.task.tags}</div>
+          <div className="other-info">Description: {this.props.task.description}</div>
+          <div className="other-info">Deadline: {this.displayDate(this.props.task.deadline)}</div>
+          <div className="other-info">Tags: {this.props.task.tags}</div>
         </div>
 
         <Button
