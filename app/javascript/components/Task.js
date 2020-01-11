@@ -1,10 +1,14 @@
 import React from "react";
 import { Checkbox, Button, Icon } from "semantic-ui-react";
+import TaskModal from "./TaskModal";
 
 class Task extends React.Component {
   constructor(props) {
     super(props);
-    this.state = Object.assign({}, this.props.task);
+    this.state = {
+      task: Object.assign({}, this.props.task),
+      isModalOpen: false,
+    }
   }
 
   handleClick = (e, { checked }) => {
@@ -24,7 +28,7 @@ class Task extends React.Component {
         <Button
           icon
           size="mini"
-          onClick={() => /* open here */{} }
+          onClick={() => this.setState({isModalOpen: true}) }
         >
           <Icon name="edit"></Icon>
         </Button>
@@ -36,6 +40,12 @@ class Task extends React.Component {
         >
           <Icon name="trash"></Icon>
         </Button>
+        <TaskModal
+          isEditable={true}
+          isModalOpen={this.state.isModalOpen}
+          handleAdd={this.props.handleAdd}
+          handleClose={() => this.setState({isModalOpen: false})}
+        />
       </div>
     );
   }
