@@ -99,6 +99,22 @@ class List extends React.Component {
     });
   };
 
+  handleOpen = () => {
+    this.setState((prevState, prevProps) => {
+      return {
+        isModalOpen: true,
+      }
+    })
+  }
+
+  handleClose = () => {
+    this.setState((prevState, prevProps) => {
+      return {
+        isModalOpen: false,
+      }
+    })
+  }
+
   render() {
     let tasks = [];
     this.state.tasks.forEach(task => {
@@ -121,6 +137,8 @@ class List extends React.Component {
         <TaskModalWrapper
           isEditable={this.state.isEditable}
           handleAdd={this.handleAdd}
+          handleOpen={this.handleOpen}
+          handleClose={this.handleClose}
           isModalOpen={this.state.isModalOpen}
         />
       </div>
