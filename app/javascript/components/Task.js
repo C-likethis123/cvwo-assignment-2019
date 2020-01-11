@@ -33,9 +33,9 @@ class Task extends React.Component {
           tags: tags
         })
       };
+    }, () => {
+      this.props.handleUpdate(Object.assign({}, this.state.task));
     });
-
-    this.props.handleUpdate(Object.assign({}, this.state.task));
   };
 
   render() {
