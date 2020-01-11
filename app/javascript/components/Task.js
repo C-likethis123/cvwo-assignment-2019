@@ -13,11 +13,11 @@ class Task extends React.Component {
 
   handleClick = (e, { checked }) => {
     this.setState(
-      () => ({
-        isCompleted: checked
+      (prevState, prevProps) => ({
+        task: Object.assign(prevState.task, { isCompleted: true })
       }),
       () => {
-        const updatedTask = Object.assign({}, this.state);
+        const updatedTask = Object.assign({}, this.state.task);
         this.props.handleUpdate(updatedTask);
       }
     );
@@ -54,7 +54,7 @@ class Task extends React.Component {
           icon
           size="mini"
           color="red"
-          onClick={() => this.props.handleDelete(this.state)}
+          onClick={() => this.props.handleDelete(this.state.task)}
         >
           <Icon name="trash"></Icon>
         </Button>
