@@ -66,16 +66,16 @@ class Task extends React.Component {
         </div>
           <Button
             size="mini"
+            onClick={() => this.setState({ isModalOpen: true })}
+          >
+            <Icon name="edit"></Icon>
+          </Button>
+          <Button
+            size="mini"
             color="red"
             onClick={() => this.props.handleDelete(this.state.task)}
           >
             <Icon name="trash"></Icon>
-          </Button>
-          <Button
-            size="mini"
-            onClick={() => this.setState({ isModalOpen: true })}
-          >
-            <Icon name="edit"></Icon>
           </Button>
 
         {this.state.isModalOpen ? (
