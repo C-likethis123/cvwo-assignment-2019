@@ -52,32 +52,32 @@ class Task extends React.Component {
         <Checkbox onClick={this.handleClick} />
         <div className="content-display">
           <div>{this.props.task.title}</div>
-          <div className="other-info">
-            Description: {this.props.task.description}
-          </div>
+          {this.props.task.description ? (
+            <div className="other-info">
+              Description: {this.props.task.description}
+            </div>
+          ) : null}
           <div className="other-info">
             Deadline: {this.displayDate(this.props.task.deadline)}
           </div>
-          <div className="other-info">Tags: {this.props.task.tags}</div>
+          {this.props.task.tags ? (
+            <div className="other-info">Tags: {this.props.task.tags}</div>
+          ) : null}
         </div>
+          <Button
+            size="mini"
+            color="red"
+            onClick={() => this.props.handleDelete(this.state.task)}
+          >
+            <Icon name="trash"></Icon>
+          </Button>
+          <Button
+            size="mini"
+            onClick={() => this.setState({ isModalOpen: true })}
+          >
+            <Icon name="edit"></Icon>
+          </Button>
 
-        <Button
-          icon
-          size="mini"
-          attached="right"
-          onClick={() => this.setState({ isModalOpen: true })}
-        >
-          <Icon name="edit"></Icon>
-        </Button>
-        <Button
-          icon
-          attached="right"
-          size="mini"
-          color="red"
-          onClick={() => this.props.handleDelete(this.state.task)}
-        >
-          <Icon name="trash"></Icon>
-        </Button>
         {this.state.isModalOpen ? (
           <TaskModal
             title={this.state.task.title}
