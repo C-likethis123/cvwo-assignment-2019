@@ -13,7 +13,7 @@ class Task extends React.Component {
   }
 
   displayDate(date) {
-    return dateformat(date, "yyyy-mm-dd");
+    return dateformat(date, "dd/mm/yyyy");
   }
 
   handleClick = (e, { checked }) => {
