@@ -81,6 +81,7 @@ class TaskModal extends React.Component {
               id="deadline"
               label="Deadline"
               selected={this.state.deadline}
+              dateFormat="dd/MM/yyyy"
               placeholder="Click here to select a date"
               onChange={date => {
                 this.setState({ deadline: new Date(date) });
