@@ -3,22 +3,23 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .item {
-    border-radius: 2px;
-    height: fit-content;
-    display: flex;
-    padding: 2%;
-    margin-bottom: 1em;
-    font-family: 'Open Sans';
-    background-color: white;
-    word-break: break-all;
-    overflow-wrap: break-word;
+  border-radius: 2px;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  padding: 2%;
+  margin-bottom: 1em;
+  background-color: white;
 }
 
 .content-display {
     display: flex;
     flex-direction: column;
+    width: 90%;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .other-info {
-    color: grey;
+  color: grey;
 }
