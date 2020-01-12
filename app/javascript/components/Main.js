@@ -1,5 +1,6 @@
 import React from "react";
 import AllLists from './AllLists';
+import { hot } from 'react-hot-loader';
 
 class Main extends React.Component {
   render() {
@@ -12,4 +13,4 @@ class Main extends React.Component {
   }
 }
 
-export default Main;
+export default hot(module)(Main);
