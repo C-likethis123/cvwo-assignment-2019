@@ -85,7 +85,7 @@ class Task extends React.Component {
             title={this.state.task.title}
             description={this.state.task.description}
             deadline={this.state.task.deadline}
-            description={this.state.task.description}
+            tags={this.state.task.tags}
             isEditable={true}
             isModalOpen={this.state.isModalOpen}
             handleAdd={this.props.handleAdd}
