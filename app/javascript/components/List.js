@@ -114,10 +114,15 @@ class List extends React.Component {
     })
   }
 
+  handleSearch = (task, searchKeywords) => {
+    const taskTags = task.tags.split(",");
+    return taskTags.some((tag) => tag.includes(searchKeywords));
+  }
+
   render() {
     let tasks = [];
     this.state.tasks.forEach(task => {
-      if (!task.isCompleted) {
+      if (!task.isCompleted && this.handleSearch(task, this.props.searchKeywords)) {
         tasks.push(
           <Task
             key={task.id}

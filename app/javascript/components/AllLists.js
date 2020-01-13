@@ -21,9 +21,20 @@ class AllLists extends React.Component {
 
   render() {
     let lists = this.state.lists.map(list => {
-      return <List key={list.id} id={list.id} title={list.title} />;
+      return (
+        <List
+          key={list.id}
+          id={list.id}
+          title={list.title}
+          searchKeywords={this.props.searchKeywords}
+        />
+      );
     });
-    return <div className="list-display">{lists}</div>;
+    return (
+      <div>
+        <div className="list-display">{lists}</div>
+      </div>
+    );
   }
 }
 
