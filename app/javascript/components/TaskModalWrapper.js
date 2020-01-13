@@ -10,10 +10,7 @@ class TaskModalWrapper extends React.Component {
   render() {
     return (
       <div>
-        <Button
-          className="add-button"
-          onClick={() => this.props.handleOpen() }
-        >
+        <Button className="add-button" onClick={() => this.props.handleOpen()}>
           Add a Task
         </Button>
         <TaskModal

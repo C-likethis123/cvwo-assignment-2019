@@ -7,8 +7,8 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchKeywords: "",
-    }
+      searchKeywords: ""
+    };
   }
 
   render() {
@@ -18,11 +18,13 @@ class Main extends React.Component {
         <Input
           icon="search"
           placeholder="Search for tasks..."
-          onChange={(event, data) => this.setState((prevProps, prevState) => {
-            return {searchKeywords: data.value}
-          })}
-          />
-        <AllLists searchKeywords={this.state.searchKeywords}/>
+          onChange={(event, data) =>
+            this.setState((prevProps, prevState) => {
+              return { searchKeywords: data.value };
+            })
+          }
+        />
+        <AllLists searchKeywords={this.state.searchKeywords} />
       </div>
     );
   }

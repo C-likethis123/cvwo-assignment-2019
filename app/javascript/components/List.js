@@ -101,28 +101,31 @@ class List extends React.Component {
   handleOpen = () => {
     this.setState((prevState, prevProps) => {
       return {
-        isModalOpen: true,
-      }
-    })
-  }
+        isModalOpen: true
+      };
+    });
+  };
 
   handleClose = () => {
     this.setState((prevState, prevProps) => {
       return {
-        isModalOpen: false,
-      }
-    })
-  }
+        isModalOpen: false
+      };
+    });
+  };
 
   handleSearch = (task, searchKeywords) => {
     const taskTags = task.tags.split(",");
-    return taskTags.some((tag) => tag.includes(searchKeywords));
-  }
+    return taskTags.some(tag => tag.includes(searchKeywords));
+  };
 
   render() {
     let tasks = [];
     this.state.tasks.forEach(task => {
-      if (!task.isCompleted && this.handleSearch(task, this.props.searchKeywords)) {
+      if (
+        !task.isCompleted &&
+        this.handleSearch(task, this.props.searchKeywords)
+      ) {
         tasks.push(
           <Task
             key={task.id}
