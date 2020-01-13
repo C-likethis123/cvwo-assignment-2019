@@ -8,12 +8,6 @@ class List extends React.Component {
     this.state = {
       tasks: [],
       isModalOpen: false,
-      taskToEdit: {
-        title: "",
-        description: "",
-        date: new Date(),
-        tags: ""
-      }
     };
   }
 
