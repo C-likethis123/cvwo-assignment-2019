@@ -5,7 +5,6 @@
 
 every 1.day, :at => '12:00 am' do
   rake "restore_dailies"
-  puts "Set all dailies to 'uncompleted'!"
 end
 
 # Learn more: http://github.com/javan/whenever
