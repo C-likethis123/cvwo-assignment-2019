@@ -7,19 +7,19 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Creating lists
-# lists = [['Dailies', 1], ['One off tasks', 2]] 
-# lists.each{|list| List.create({title: list[0], key: "#{list[1]}"})}
+lists = [['Dailies', 1], ['One off tasks', 2]] 
+lists.each{|list| List.create({title: list[0], key: "#{list[1]}"})}
 
 # Creating To Dos
-# lists = List.all
-# for i in 0...2
-#     for j in 0...5
-#         lists[i].tasks.create(
-#             {title: "Do something #{j}",
-#             description: "Description #{j}",
-#             deadline: DateTime.now,
-#             isCompleted: false,
-#             isDailies: lists[i].title == 'Dailies',
-#             tags: "do now, something else"})
-#     end
-# end
+lists = List.all
+for i in 0...2
+    for j in 0...5
+        lists[i].tasks.create(
+            {title: "Do something #{j}",
+            description: "Description #{j}",
+            deadline: DateTime.now,
+            isCompleted: false,
+            isDailies: lists[i].title == 'Dailies',
+            tags: "do now, something else"})
+    end
+end
