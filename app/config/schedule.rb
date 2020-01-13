@@ -3,8 +3,4 @@
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
 
-every 1.day, :at => '12:00 am' do
-  rake "restore_dailies"
-end
-
 # Learn more: http://github.com/javan/whenever
