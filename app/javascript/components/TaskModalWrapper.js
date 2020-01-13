@@ -13,12 +13,14 @@ class TaskModalWrapper extends React.Component {
         <Button className="add-button" onClick={() => this.props.handleOpen()}>
           Add a Task
         </Button>
-        {this.props.isModalOpen ? <TaskModal
-          isEditable={this.props.isEditable}
-          isModalOpen={this.props.isModalOpen}
-          handleAdd={this.props.handleAdd}
-          handleClose={this.props.handleClose}
-        /> : null}
+        {this.props.isModalOpen ? (
+          <TaskModal
+            isEditable={false}
+            isModalOpen={this.props.isModalOpen}
+            handleAdd={this.props.handleAdd}
+            handleClose={this.props.handleClose}
+          />
+        ) : null}
       </div>
     );
   }

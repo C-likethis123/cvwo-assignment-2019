@@ -8,7 +8,6 @@ class List extends React.Component {
     this.state = {
       tasks: [],
       isModalOpen: false,
-      isEditable: false,
       taskToEdit: {
         title: "",
         description: "",
@@ -142,7 +141,6 @@ class List extends React.Component {
         <div className="todo-list-title">{this.props.title}</div>
         <div className="items-container">{tasks}</div>
         <TaskModalWrapper
-          isEditable={this.state.isEditable}
           handleAdd={this.handleAdd}
           handleOpen={this.handleOpen}
           handleClose={this.handleClose}
