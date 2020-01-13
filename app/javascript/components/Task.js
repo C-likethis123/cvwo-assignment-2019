@@ -57,9 +57,11 @@ class Task extends React.Component {
               Description: {this.props.task.description}
             </div>
           ) : null}
-          <div className="other-info">
-            Deadline: {this.displayDate(this.props.task.deadline)}
-          </div>
+          {this.props.task.deadline ? (
+            <div className="other-info">
+              Deadline: {this.displayDate(this.props.task.deadline)}
+            </div>
+          ) : null}
           {this.props.task.tags ? (
             <div className="other-info">Tags: {this.props.task.tags}</div>
           ) : null}
