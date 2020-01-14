@@ -33,7 +33,7 @@ class List extends React.Component {
       }
     });
 
-    fetch(`http://localhost:3000/api/v1/lists/${this.props.id}/tasks`, {
+    fetch(`/api/v1/lists/${this.props.id}/tasks`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -52,7 +52,7 @@ class List extends React.Component {
 
   handleDelete = task => {
     fetch(
-      `http://localhost:3000/api/v1/lists/${this.props.id}/tasks/${task.id}`,
+      `/api/v1/lists/${this.props.id}/tasks/${task.id}`,
       {
         method: "DELETE",
         headers: {
@@ -68,7 +68,7 @@ class List extends React.Component {
 
   handleUpdate = task => {
     fetch(
-      `http://localhost:3000/api/v1/lists/${this.props.id}/tasks/${task.id}`,
+      `/api/v1/lists/${this.props.id}/tasks/${task.id}`,
       {
         method: "PUT",
         headers: {
