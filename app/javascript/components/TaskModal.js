@@ -2,8 +2,6 @@ import React from "react";
 import { Modal, Button, Form, Input } from "semantic-ui-react";
 import DatePicker from "react-datepicker";
 
-import "react-datepicker/dist/react-datepicker.css";
-
 class TaskModal extends React.Component {
   constructor(props) {
     super(props);

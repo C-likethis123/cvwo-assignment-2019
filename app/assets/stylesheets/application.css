@@ -14,6 +14,7 @@
  *= require_self
  */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+@import url('https://cdnjs.cloudflare.com/ajax/libs/react-datepicker/2.8.0/react-datepicker.min.css');
 
 * {
   font-family: "Open Sans";
