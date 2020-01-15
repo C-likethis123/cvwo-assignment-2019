@@ -1,6 +1,16 @@
 class Api::V1::ListsController < ApplicationController
     def index
-        render json: List.all()
+        #retrieve the lists from the key. if key not found, create new key. 
+        if (cookies[:user_key].nil?)
+            key = SecureRandom.hex(8).upcase
+            cookies[:user_key] = key
+            dailyList = List.create({title: 'Dailies', key: key})
+            oneOffList = List.create({title: 'One off tasks', key: key})
+            render json: [dailyList, oneOffList]
+        else
+            @lists = List.where(key: cookies[:user_key])
+            render json: @lists
+        end
     end
 
     def create
