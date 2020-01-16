@@ -1,7 +1,7 @@
 import React from "react";
 import AllLists from "./AllLists";
-import { Input } from "semantic-ui-react";
 import { hot } from "react-hot-loader";
+import SearchOptions from "./SearchOptions";
 
 class Main extends React.Component {
   constructor(props) {
@@ -11,19 +11,18 @@ class Main extends React.Component {
     };
   }
 
+  updateSearchKeywords = searchKeywords => {
+    this.setState((prevProps, prevState) => {
+      return { searchKeywords: searchKeywords };
+    });
+  };
+
   render() {
     return (
       <div>
         <h1>To do: List of tasks</h1>
-        <Input
-          icon="search"
-          placeholder="Search for tasks..."
-          onChange={(event, data) =>
-            this.setState((prevProps, prevState) => {
-              return { searchKeywords: data.value };
-            })
-          }
-        />
+        <SearchOptions updateSearchKeywords={this.updateSearchKeywords} />
+
         <AllLists searchKeywords={this.state.searchKeywords} />
       </div>
     );
