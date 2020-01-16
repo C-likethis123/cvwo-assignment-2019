@@ -3,21 +3,22 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .list-display {
-  display: flex;
   justify-content: center;
 }
 
 .todo-list {
-  width: 40%;
   height: 70%;
-  padding: 3%;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-bottom: 4%;
+  padding-top: 4%;
+  border-radius: 4px;
 }
 
 .todo-list-title {
-  background-color: #7dd386;
   font-weight: bold;
-  text-align: center;
-  padding: 2%;
+  font-size: 1.5em;
+  padding-bottom: 2%;
 }
 
 .items-container {
