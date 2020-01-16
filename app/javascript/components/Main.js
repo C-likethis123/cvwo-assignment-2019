@@ -7,7 +7,8 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchKeywords: ""
+      searchKeywords: "",
+      searchTags: []
     };
   }
 
@@ -17,13 +18,24 @@ class Main extends React.Component {
     });
   };
 
+  updateSearchTags = searchTags => {
+    this.setState((prevProps, prevState) => {
+      return { searchTags: searchTags };
+    });
+  }
+
   render() {
     return (
       <div>
         <h1>To do: List of tasks</h1>
-        <SearchOptions updateSearchKeywords={this.updateSearchKeywords} />
-
-        <AllLists searchKeywords={this.state.searchKeywords} />
+        <SearchOptions
+          updateSearchKeywords={this.updateSearchKeywords}
+          updateSearchTags={this.updateSearchTags}
+        />
+        <AllLists
+          searchKeywords={this.state.searchKeywords}
+          searchTags={this.state.searchTags}
+        />
       </div>
     );
   }

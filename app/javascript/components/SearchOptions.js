@@ -30,7 +30,7 @@ class SearchOptions extends React.Component {
           search
           selection
           options={this.tagOptions}
-          onChange={data => console.log(data.value)}
+          onChange={(event, data) => this.props.updateSearchTags(data.value)}
         />
       </div>
     );
