@@ -19,3 +19,8 @@
 * {
   font-family: "Open Sans";
 }
+
+.search-options {
+    display: flex;
+    justify-content: center;
+}
