@@ -7,7 +7,7 @@ class List extends React.Component {
     super(props);
     this.state = {
       tasks: [],
-      isModalOpen: false,
+      isModalOpen: false
     };
   }
 
@@ -51,15 +51,12 @@ class List extends React.Component {
   };
 
   handleDelete = task => {
-    fetch(
-      `/api/v1/lists/${this.props.id}/tasks/${task.id}`,
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json"
-        }
+    fetch(`/api/v1/lists/${this.props.id}/tasks/${task.id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
       }
-    ).then(() => {
+    }).then(() => {
       this.setState({
         tasks: this.state.tasks.filter(currTask => currTask.id !== task.id)
       });
@@ -67,16 +64,13 @@ class List extends React.Component {
   };
 
   handleUpdate = task => {
-    fetch(
-      `/api/v1/lists/${this.props.id}/tasks/${task.id}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ task: task })
-      }
-    ).then(() => {
+    fetch(`/api/v1/lists/${this.props.id}/tasks/${task.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ task: task })
+    }).then(() => {
       this.setState(prevState => {
         const prevTasks = [...prevState.tasks];
 
@@ -107,9 +101,18 @@ class List extends React.Component {
     });
   };
 
-  handleSearch = (task, searchKeywords) => {
+  matchesSearchKeywords = (task, searchKeywords) => {
+    const taskTitle = task.title;
+    return taskTitle.includes(searchKeywords);
+  };
+
+  matchesSearchTags = (task, searchTags) => {
     const taskTags = task.tags.split(",");
-    return taskTags.some(tag => tag.includes(searchKeywords));
+    const matchesSearchTags =
+      searchTags.length == 0
+        ? true
+        : searchTags.some(tag => taskTags.includes(tag));
+    return matchesSearchTags;
   };
 
   render() {
@@ -117,7 +120,8 @@ class List extends React.Component {
     this.state.tasks.forEach(task => {
       if (
         !task.isCompleted &&
-        this.handleSearch(task, this.props.searchKeywords)
+        this.matchesSearchKeywords(task, this.props.searchKeywords) &&
+        this.matchesSearchTags(task, this.props.searchTags)
       ) {
         tasks.push(
           <Task

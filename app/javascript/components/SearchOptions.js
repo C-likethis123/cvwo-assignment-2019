@@ -7,15 +7,6 @@ class SearchOptions extends React.Component {
     this.state = {};
   }
 
-  tagOptions = [
-    {
-      key: "Important",
-      text: "Important",
-      value: "Important",
-      label: { color: "red", empty: true, circular: true }
-    }
-  ];
-
   render() {
     return (
       <div className="search-options">
@@ -29,7 +20,8 @@ class SearchOptions extends React.Component {
           multiple
           search
           selection
-          options={this.tagOptions}
+          options={this.props.tagOptions}
+          onClick={this.props.updateTagOptions}
           onChange={(event, data) => this.props.updateSearchTags(data.value)}
         />
       </div>
