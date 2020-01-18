@@ -19,7 +19,7 @@ class Task extends React.Component {
   handleClick = (e, { checked }) => {
     this.setState(
       (prevState, prevProps) => ({
-        task: Object.assign(prevState.task, { isCompleted: true })
+        task: Object.assign(prevState.task, { isCompleted: checked })
       }),
       () => {
         const updatedTask = Object.assign({}, this.state.task);
@@ -49,7 +49,7 @@ class Task extends React.Component {
   render() {
     return (
       <div className="item" key={this.props.task.id}>
-        <Checkbox onClick={this.handleClick} />
+        <Checkbox onClick={this.handleClick} checked={this.props.task.isCompleted}/>
         <div className="content-display">
           <div>{this.props.task.title}</div>
           {this.props.task.description ? (

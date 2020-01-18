@@ -19,6 +19,7 @@ class AllLists extends React.Component {
           title={list.title}
           searchKeywords={this.props.searchKeywords}
           searchTags={this.props.searchTags}
+          viewCompleted={this.props.viewCompleted}
         />
       );
     });

@@ -7,6 +7,7 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      viewCompleted: false,
       searchKeywords: "",
       searchTags: [],
       tagOptions: [],
@@ -58,22 +59,29 @@ class Main extends React.Component {
             tagOptions = tagOptions.concat(tagsFromTasks);
           });
           return tagOptions;
-        }).then((tagOptions) => {
+        })
+        .then(tagOptions => {
           tagOptions = [...new Set(tagOptions)];
-          tagOptions = tagOptions.map((tag) => ({
+          tagOptions = tagOptions.map(tag => ({
             key: tag,
-            value: tag, 
+            value: tag,
             text: tag,
-            label: { color: "red", empty: true, circular: true },
+            label: { color: "red", empty: true, circular: true }
           }));
 
           this.setState(() => {
             return {
-              tagOptions: tagOptions,
-            }
-          })
+              tagOptions: tagOptions
+            };
+          });
         });
     });
+  };
+
+  updateViewCompleted = () => {
+    this.setState(prevState => ({
+      viewCompleted: !prevState.viewCompleted
+    }));
   };
 
   render() {
@@ -81,6 +89,7 @@ class Main extends React.Component {
       <div>
         <h1>To do: List of tasks</h1>
         <SearchOptions
+          updateViewCompleted={this.updateViewCompleted}
           updateSearchKeywords={this.updateSearchKeywords}
           updateSearchTags={this.updateSearchTags}
           updateTagOptions={this.updateTagOptions}
@@ -90,6 +99,7 @@ class Main extends React.Component {
           searchKeywords={this.state.searchKeywords}
           searchTags={this.state.searchTags}
           lists={this.state.lists}
+          viewCompleted={this.state.viewCompleted}
         />
       </div>
     );

@@ -119,7 +119,7 @@ class List extends React.Component {
     let tasks = [];
     this.state.tasks.forEach(task => {
       if (
-        !task.isCompleted &&
+        task.isCompleted == this.props.viewCompleted &&
         this.matchesSearchKeywords(task, this.props.searchKeywords) &&
         this.matchesSearchTags(task, this.props.searchTags)
       ) {
