@@ -10,4 +10,5 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
   get '/signup', to: 'home#signup'
+  get '/login', to: 'home#login'
 end
