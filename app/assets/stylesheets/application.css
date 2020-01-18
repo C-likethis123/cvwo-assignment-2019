@@ -19,10 +19,10 @@
 .search-options {
     display: flex;
     justify-content: center;
-    align-items: baseline;
+    align-items: center;
 }
 
 .search-options div {
-    margin-left: 2%;
-    margin-right: 2%;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
 }
