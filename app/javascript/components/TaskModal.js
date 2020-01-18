@@ -74,6 +74,7 @@ class TaskModal extends React.Component {
               control={DatePicker}
               id="deadline"
               label="Deadline"
+              autocomplete="off"
               selected={this.state.deadline}
               dateFormat="dd/MM/yyyy"
               isClearable
