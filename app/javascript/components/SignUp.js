@@ -8,26 +8,30 @@ class SignUp extends React.Component {
   }
 
   render() {
-    return (<Segment className="sign-up">
-        <h1>Sign Up</h1>
-      <Form>
-        <Form.Field>
-          <label>Username or Email</label>
-          <input placeholder="Enter your username or email"></input>
-        </Form.Field>
+    return (
+      <div className="container">
+        <div className="sign-up">
+          <h1>Sign Up</h1>
+          <Form>
+            <Form.Field>
+              <label>Username or Email</label>
+              <input placeholder="Enter your username or email"></input>
+            </Form.Field>
 
-        <Form.Field>
-          <label>Password</label>
-          <input placeholder="Enter a password"></input>
-        </Form.Field>
-        
-        <Form.Field>
-          <label>Confirm Password</label>
-          <input placeholder="Enter your password again"></input>
-        </Form.Field>
-        <Button type="submit">Sign Up</Button>
-      </Form>
-    </Segment>);
+            <Form.Field>
+              <label>Password</label>
+              <input placeholder="Enter a password"></input>
+            </Form.Field>
+
+            <Form.Field>
+              <label>Confirm Password</label>
+              <input placeholder="Enter your password again"></input>
+            </Form.Field>
+            <Button type="submit">Sign Up</Button>
+          </Form>
+        </div>
+      </div>
+    );
   }
 }
 

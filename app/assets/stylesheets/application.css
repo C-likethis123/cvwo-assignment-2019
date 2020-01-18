@@ -13,16 +13,28 @@
  *= require_tree .
  *= require_self
  */
-@import url('https://cdnjs.cloudflare.com/ajax/libs/react-datepicker/2.8.0/react-datepicker.min.css');
-
+@import url("https://cdnjs.cloudflare.com/ajax/libs/react-datepicker/2.8.0/react-datepicker.min.css");
 
 .search-options {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .search-options div {
-    margin-left: 0.5%;
-    margin-right: 0.5%;
+  margin-left: 0.5%;
+  margin-right: 0.5%;
+}
+
+.container {
+  position: relative;
+  /* top: 50%; */
+  transform: translateY(50%);
+}
+
+.sign-up {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
 }
