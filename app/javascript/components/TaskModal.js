@@ -89,7 +89,7 @@ class TaskModal extends React.Component {
               id="tags"
               label="Tags"
               value={this.state.tags}
-              placeholder="Enter tags, separated by commas"
+              placeholder="Enter tags, separated by commas and spaces (eg: tag1, tag2)"
               onChange={this.handleChange}
             />
             <Form.Group inline>
