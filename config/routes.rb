@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   end
 
   root to: 'home#index'
+  get '/signup', to: 'home#signup'
 end
