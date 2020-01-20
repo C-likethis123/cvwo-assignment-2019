@@ -2,6 +2,7 @@ import React from "react";
 import AllLists from "./AllLists";
 import { hot } from "react-hot-loader";
 import SearchOptions from "./SearchOptions";
+import NotLoggedIn from "./NotLoggedIn";
 
 class Main extends React.Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class Main extends React.Component {
       searchKeywords: "",
       searchTags: [],
       tagOptions: [],
-      lists: []
+      lists: [],
+      isLoggedIn: false
     };
   }
 
@@ -88,6 +90,7 @@ class Main extends React.Component {
     return (
       <div>
         <h1>To do: List of tasks</h1>
+        {!this.state.isLoggedIn ? (<NotLoggedIn />) : null}
         <SearchOptions
           updateViewCompleted={this.updateViewCompleted}
           updateSearchKeywords={this.updateSearchKeywords}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Segment, Form, Button } from "semantic-ui-react";
+import { Message, Form, Button } from "semantic-ui-react";
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -7,6 +7,8 @@ class SignUp extends React.Component {
     this.state = {
       email: "",
       password: "",
+      messages: [],
+      isError: false,
     };
   }
 
@@ -21,34 +23,64 @@ class SignUp extends React.Component {
   };
 
   handleSignUp = () => {
-      const newUser = Object.assign({}, this.state);
-      console.log(newUser);
-      fetch(`/api/v1/users`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ user: newUser}),
-      })
-        .then(response => {
-            console.log(response.json());
+    //   const key = Cookies.get('user_key');
+    const newUser = Object.assign({}, this.state);
+    fetch(`/api/v1/users/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ user: newUser })
+    }).then(response => {
+      if (response.ok) {
+        this.setState(() => ({
+            messages: ["Your registration is successful. Sign in to view your tasks!"],
+            isError: false,
+        }));
+      } else {
+        response.json().then(errors => {
+          const errorArray = [];
+          for (const component in errors) {
+            errorArray.push(`${component}: ${errors[component]}`);
+          }
+          this.setState(() => ({ messages: errorArray, isError: true }));
         });
-  }
+      }
+    });
+  };
 
   render() {
+    console.log(this.state);
     return (
       <div className="container">
         <div className="sign-up">
+          {this.state.messages.length == 0 ? null : (
+            <Message
+              error={this.state.isError}
+              header="There are some problems with your registration"
+              list={this.state.messages}
+            />
+          )}
           <h1>Sign Up</h1>
           <Form>
             <Form.Field>
               <label>Email</label>
-              <input placeholder="Enter your email" type="email" id="email" onChange={this.handleChange}></input>
+              <input
+                placeholder="Enter your email"
+                type="email"
+                id="email"
+                onChange={this.handleChange}
+              ></input>
             </Form.Field>
 
             <Form.Field>
               <label>Password</label>
-              <input placeholder="Enter a password" type="password" id="password" onChange={this.handleChange}></input>
+              <input
+                placeholder="Enter a password"
+                type="password"
+                id="password"
+                onChange={this.handleChange}
+              ></input>
             </Form.Field>
 
             <Form.Field>
