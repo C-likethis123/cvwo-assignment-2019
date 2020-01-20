@@ -14,13 +14,13 @@ class Login extends React.Component {
           <h1>Sign In</h1>
           <Form>
             <Form.Field>
-              <label>Username or Email</label>
-              <input placeholder="Enter your username or email"></input>
+              <label>Email</label>
+              <input type="email" placeholder="Enter your email"></input>
             </Form.Field>
 
             <Form.Field>
               <label>Password</label>
-              <input placeholder="Enter a password"></input>
+              <input type="password" placeholder="Enter a password"></input>
             </Form.Field>
             <Button type="submit">Sign In</Button>
           </Form>
