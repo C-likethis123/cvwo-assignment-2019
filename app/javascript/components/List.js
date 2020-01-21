@@ -107,7 +107,7 @@ class List extends React.Component {
   };
 
   matchesSearchTags = (task, searchTags) => {
-    const taskTags = task.tags.split(",");
+    const taskTags = task.tags.split(", ");
     const matchesSearchTags =
       searchTags.length == 0
         ? true
