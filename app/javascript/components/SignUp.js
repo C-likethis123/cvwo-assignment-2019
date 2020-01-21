@@ -7,8 +7,11 @@ class SignUp extends React.Component {
     this.state = {
       email: "",
       password: "",
-      messages: [],
-      isError: false,
+      messages: {
+        header: "",
+        content: []
+      },
+      isError: false
     };
   }
 
@@ -34,8 +37,11 @@ class SignUp extends React.Component {
     }).then(response => {
       if (response.ok) {
         this.setState(() => ({
-            messages: ["Your registration is successful. Sign in to view your tasks!"],
-            isError: false,
+          messages: {
+              header: "Your registration is successful.",
+              content: ["Sign in to view your tasks!"]
+          },
+          isError: false
         }));
       } else {
         response.json().then(errors => {
@@ -43,7 +49,13 @@ class SignUp extends React.Component {
           for (const component in errors) {
             errorArray.push(`${component}: ${errors[component]}`);
           }
-          this.setState(() => ({ messages: errorArray, isError: true }));
+          this.setState(() => ({
+            messages: {
+              header: "There are some problems with your registration",
+              content: errorArray
+            },
+            isError: true
+          }));
         });
       }
     });
@@ -53,11 +65,11 @@ class SignUp extends React.Component {
     return (
       <div className="container">
         <div className="sign-up">
-          {this.state.messages.length == 0 ? null : (
+          {this.state.messages.content.length == 0 ? null : (
             <Message
               error={this.state.isError}
-              header="There are some problems with your registration"
-              list={this.state.messages}
+              header={this.state.messages.header}
+              list={this.state.messages.content}
             />
           )}
           <h1>Sign Up</h1>
