@@ -22,7 +22,10 @@ class Login extends React.Component {
   };
 
   handleLogIn = () => {
-    const userCredentials = Object.assign({}, this.state);
+    const userCredentials = {
+      email: this.state.email,
+      password: this.state.password
+    };
     fetch(`users/sign_in`, {
       method: "POST",
       headers: {
