@@ -7,7 +7,7 @@ class Login extends React.Component {
     this.state = {
       email: "",
       password: "",
-      hasError: false,
+      hasError: false
     };
   }
 
@@ -37,16 +37,15 @@ class Login extends React.Component {
       if (response.redirected) {
         window.location = response.url;
       } else {
-          this.setState(() => ({ hasError: true }));
+        this.setState(() => ({ hasError: true }));
       }
     });
   };
 
   render() {
-    const errorMessages =
-      this.state.hasError ? (
-        <Message error header="Your username/password is invalid" />
-      ) : null;
+    const errorMessages = this.state.hasError ? (
+      <Message error header="Your username/password is invalid" />
+    ) : null;
     return (
       <div className="container">
         <div className="sign-up">
