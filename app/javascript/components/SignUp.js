@@ -25,7 +25,7 @@ class SignUp extends React.Component {
   handleSignUp = () => {
     //   const key = Cookies.get('user_key');
     const newUser = Object.assign({}, this.state);
-    fetch(`/api/v1/users/`, {
+    fetch(`/users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -86,8 +86,9 @@ class SignUp extends React.Component {
               <label>Confirm Password</label>
               <input
                 placeholder="Enter your password again"
-                id="password-confirmation"
+                id="password_confirmation"
                 type="password"
+                onChange={this.handleChange}
               ></input>
             </Form.Field>
             <Button onClick={this.handleSignUp}>Sign Up</Button>
