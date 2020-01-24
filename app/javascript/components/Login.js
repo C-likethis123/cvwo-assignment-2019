@@ -34,8 +34,12 @@ class Login extends React.Component {
       redirect: "follow",
       body: JSON.stringify({ user: userCredentials })
     }).then(response => {
-      if (response.redirected) {
-        window.location = response.url;
+      if (response.ok) {
+        // go to user's id
+        response.json().then(user => {
+          Cookies.set('user_id', user.id);
+          window.location = "http://localhost:3000";
+        });
       } else {
         this.setState(() => ({ hasError: true }));
       }

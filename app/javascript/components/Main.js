@@ -3,6 +3,7 @@ import AllLists from "./AllLists";
 import { hot } from "react-hot-loader";
 import SearchOptions from "./SearchOptions";
 import NotLoggedIn from "./NotLoggedIn";
+import { Button } from "semantic-ui-react";
 
 class Main extends React.Component {
   constructor(props) {
@@ -86,11 +87,22 @@ class Main extends React.Component {
     }));
   };
 
+  handleLogOut = () => {
+    fetch(`users/sign_out`, {
+      method: "DELETE"
+    }).then(() => {
+      this.setState(() => ({
+        isLoggedIn: false
+      }));
+    });
+  };
+
   render() {
     return (
       <div>
         <h1>To do: List of tasks</h1>
-        {!this.state.isLoggedIn ? (<NotLoggedIn />) : null}
+        {!this.state.isLoggedIn ? <NotLoggedIn /> : null}
+        <Button onClick={this.handleLogOut}>Sign out</Button>
         <SearchOptions
           updateViewCompleted={this.updateViewCompleted}
           updateSearchKeywords={this.updateSearchKeywords}
