@@ -13,12 +13,8 @@ class List extends React.Component {
 
   componentDidMount() {
     fetch(`/api/v1/lists/${this.props.id}/tasks.json`)
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        this.setState({ tasks: data });
-      });
+      .then(response => response.json())
+      .then(data => this.setState(() => ({ tasks: data })));
   }
 
   handleAdd = (title, description, deadline, tags) => {
@@ -40,14 +36,12 @@ class List extends React.Component {
       },
       body: task
     })
-      .then(response => {
-        return response.json();
-      })
-      .then(task => {
-        this.setState({
+      .then(response => response.json())
+      .then(task =>
+        this.setState(() => ({
           tasks: this.state.tasks.concat(task)
-        });
-      });
+        }))
+      );
   };
 
   handleDelete = task => {
@@ -56,11 +50,11 @@ class List extends React.Component {
       headers: {
         "Content-Type": "application/json"
       }
-    }).then(() => {
+    }).then(() =>
       this.setState({
         tasks: this.state.tasks.filter(currTask => currTask.id !== task.id)
-      });
-    });
+      })
+    );
   };
 
   handleUpdate = task => {
@@ -86,19 +80,15 @@ class List extends React.Component {
   };
 
   handleOpen = () => {
-    this.setState((prevState, prevProps) => {
-      return {
-        isModalOpen: true
-      };
-    });
+    this.setState((prevState, prevProps) => ({
+      isModalOpen: true
+    }));
   };
 
   handleClose = () => {
-    this.setState((prevState, prevProps) => {
-      return {
-        isModalOpen: false
-      };
-    });
+    this.setState((prevState, prevProps) => ({
+      isModalOpen: false
+    }));
   };
 
   matchesSearchKeywords = (task, searchKeywords) => {
@@ -109,7 +99,7 @@ class List extends React.Component {
   matchesSearchTags = (task, searchTags) => {
     const taskTags = task.tags.split(", ");
     const matchesSearchTags =
-      searchTags.length == 0
+      searchTags.length === 0
         ? true
         : searchTags.some(tag => taskTags.includes(tag));
     return matchesSearchTags;

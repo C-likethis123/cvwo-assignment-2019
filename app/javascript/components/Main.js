@@ -50,9 +50,7 @@ class Main extends React.Component {
     let tagOptions = [];
     this.state.lists.forEach(list => {
       fetch(`/api/v1/lists/${list.id}/tasks.json`)
-        .then(response => {
-          return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
           data.forEach(task => {
             let tagsFromTasks = this.processTags(task.tags);
@@ -69,11 +67,9 @@ class Main extends React.Component {
             label: { color: "red", empty: true, circular: true }
           }));
 
-          this.setState(() => {
-            return {
+          this.setState(() => ({
               tagOptions: tagOptions
-            };
-          });
+            }));
         });
     });
   };
