@@ -4,20 +4,11 @@ import { Input, Dropdown, Radio } from "semantic-ui-react";
 class SearchOptions extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { viewCompleted: false };
   }
-
-  toggle = () => {
-    this.setState(prevState => ({
-      viewCompleted: !prevState.viewCompleted
-    }),
-    this.props.updateViewCompleted());
-  };
 
   render() {
     return (
       <div className="search-options">
-        {this.state.viewCompleted}
         <Input
           icon="search"
           placeholder="Search for tasks..."
@@ -37,8 +28,7 @@ class SearchOptions extends React.Component {
         <Radio
           toggle
           label="View completed tasks"
-          checked={this.state.viewCompleted}
-          onChange={this.toggle}
+          onChange={this.props.toggleViewCompleted}
         />
       </div>
     );

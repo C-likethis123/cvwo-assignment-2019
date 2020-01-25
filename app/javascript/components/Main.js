@@ -74,7 +74,7 @@ class Main extends React.Component {
     });
   };
 
-  updateViewCompleted = () => {
+  toggleViewCompleted = () => {
     this.setState(prevState => ({
       viewCompleted: !prevState.viewCompleted
     }));
@@ -85,7 +85,7 @@ class Main extends React.Component {
       <div>
         <h1>To do: List of tasks</h1>
         <SearchOptions
-          updateViewCompleted={this.updateViewCompleted}
+          toggleViewCompleted={this.toggleViewCompleted}
           updateSearchKeywords={this.updateSearchKeywords}
           updateSearchTags={this.updateSearchTags}
           updateTagOptions={this.updateTagOptions}
