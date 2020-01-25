@@ -80,13 +80,13 @@ class List extends React.Component {
   };
 
   handleOpen = () => {
-    this.setState((prevState, prevProps) => ({
+    this.setState(() => ({
       isModalOpen: true
     }));
   };
 
   handleClose = () => {
-    this.setState((prevState, prevProps) => ({
+    this.setState(() => ({
       isModalOpen: false
     }));
   };

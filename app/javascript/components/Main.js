@@ -17,13 +17,9 @@ class Main extends React.Component {
 
   componentDidMount() {
     fetch("/api/v1/lists.json")
-      .then(response => {
-        return response.json();
-      })
+      .then(response => response.json())
       .then(data => {
-        this.setState((prevProps, prevState) => {
-          return { lists: data };
-        });
+        this.setState(() => ({ lists: data }));
       });
   }
 
@@ -68,8 +64,8 @@ class Main extends React.Component {
           }));
 
           this.setState(() => ({
-              tagOptions: tagOptions
-            }));
+            tagOptions: tagOptions
+          }));
         });
     });
   };

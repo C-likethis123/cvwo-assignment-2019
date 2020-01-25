@@ -17,11 +17,9 @@ class TaskModal extends React.Component {
   handleChange = () => {
     const attribute = event.target.id;
     const changedValue = event.target.value;
-    this.setState((prevState, prevProps) => {
-      return {
-        [attribute]: changedValue
-      };
-    });
+    this.setState(() => ({
+      [attribute]: changedValue
+    }));
   };
 
   handleSubmit = () => {
