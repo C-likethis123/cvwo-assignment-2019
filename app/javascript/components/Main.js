@@ -41,7 +41,7 @@ class Main extends React.Component {
 
   processTags = tags => {
     return tags
-      .split(",")
+      .split(", ")
       .map(tag => tag.trim())
       .filter(tag => tag !== "");
   };
