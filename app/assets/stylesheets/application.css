@@ -15,6 +15,9 @@
  */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/react-datepicker/2.8.0/react-datepicker.min.css');
 
+#app-title {
+    text-align: center;
+}
 
 .search-options {
     display: flex;

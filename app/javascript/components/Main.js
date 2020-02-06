@@ -79,7 +79,7 @@ class Main extends React.Component {
   render() {
     return (
       <div>
-        <h1>To do: List of tasks</h1>
+        <h1 id="app-title">To Do List App</h1>
         <SearchOptions
           toggleViewCompleted={this.toggleViewCompleted}
           updateSearchKeywords={this.updateSearchKeywords}
