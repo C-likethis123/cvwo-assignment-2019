@@ -20,11 +20,11 @@ class List extends React.Component {
   handleAdd = (title, description, deadline, tags) => {
     let task = JSON.stringify({
       task: {
-        title: title,
-        description: description,
-        deadline: deadline,
+        title,
+        description,
+        deadline,
         isCompleted: false,
-        tags: tags,
+        tags,
         isDailies: this.props.title === "Dailies"
       }
     });
