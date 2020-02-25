@@ -22,7 +22,6 @@ class SearchOptions extends React.Component {
           search
           selection
           options={this.props.tagOptions}
-          // onClick={this.props.updateTagOptions}
           onChange={(event, data) => this.props.updateSearchTags(data.value)}
         />
         <Radio

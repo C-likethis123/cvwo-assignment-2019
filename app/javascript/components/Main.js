@@ -3,6 +3,13 @@ import AllLists from "./AllLists";
 import { hot } from "react-hot-loader";
 import SearchOptions from "./SearchOptions";
 
+
+const NavBar = (props) => {
+  return <div id="app-title-container">
+    <h1 id="app-title">{props.title}</h1>
+  </div>
+}
+
 class Main extends React.Component {
   constructor(props) {
     super(props);
@@ -79,7 +86,7 @@ class Main extends React.Component {
   render() {
     return (
       <div>
-        <h1 id="app-title">To Do List App</h1>
+        <NavBar title="To Do List" />
         <SearchOptions
           toggleViewCompleted={this.toggleViewCompleted}
           updateSearchKeywords={this.updateSearchKeywords}
