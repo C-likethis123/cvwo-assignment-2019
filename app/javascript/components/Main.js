@@ -20,7 +20,7 @@ class Main extends React.Component {
       .then(response => response.json())
       .then(data => {
         this.setState(() => ({ lists: data }));
-      });
+      }).then(()=> this.updateTagOptions());
   }
 
   updateSearchKeywords = searchKeywords => {
