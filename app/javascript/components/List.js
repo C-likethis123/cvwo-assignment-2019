@@ -64,19 +64,21 @@ class List extends React.Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ task: task })
-    }).then(() => {
-      this.setState(prevState => {
-        const prevTasks = [...prevState.tasks];
+    })
+      .then(() => {
+        this.setState(prevState => {
+          const prevTasks = [...prevState.tasks];
 
-        const indexOfTask = prevTasks.findIndex(
-          currTask => currTask.id === task.id
-        );
-        prevTasks[indexOfTask] = Object.assign({}, task);
-        return {
-          tasks: prevTasks
-        };
-      });
-    });
+          const indexOfTask = prevTasks.findIndex(
+            currTask => currTask.id === task.id
+          );
+          prevTasks[indexOfTask] = Object.assign({}, task);
+          return {
+            tasks: prevTasks
+          };
+        });
+      })
+      .then(() => this.props.updateTagOptions());
   };
 
   handleOpen = () => {
@@ -94,7 +96,10 @@ class List extends React.Component {
   matchesSearchKeywords = (task, searchKeywords) => {
     const taskTitle = task.title.toLowerCase();
     const taskDescription = task.description.toLowerCase();
-    return taskTitle.includes(searchKeywords) || taskDescription.includes(searchKeywords);
+    return (
+      taskTitle.includes(searchKeywords) ||
+      taskDescription.includes(searchKeywords)
+    );
   };
 
   matchesSearchTags = (task, searchTags) => {

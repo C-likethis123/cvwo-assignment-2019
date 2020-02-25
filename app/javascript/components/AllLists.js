@@ -17,6 +17,7 @@ class AllLists extends React.Component {
           key={list.id}
           id={list.id}
           title={list.title}
+          updateTagOptions={this.props.updateTagOptions}
           searchKeywords={this.props.searchKeywords}
           searchTags={this.props.searchTags}
           viewCompleted={this.props.viewCompleted}

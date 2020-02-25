@@ -84,13 +84,13 @@ class Main extends React.Component {
           toggleViewCompleted={this.toggleViewCompleted}
           updateSearchKeywords={this.updateSearchKeywords}
           updateSearchTags={this.updateSearchTags}
-          updateTagOptions={this.updateTagOptions}
           tagOptions={this.state.tagOptions}
         />
         <AllLists
           searchKeywords={this.state.searchKeywords}
           searchTags={this.state.searchTags}
           lists={this.state.lists}
+          updateTagOptions={this.updateTagOptions}
           viewCompleted={this.state.viewCompleted}
         />
       </div>
