@@ -1,5 +1,6 @@
 # cvwo-assignment-2019
 
+<img src="ui.png" alt="UI for ToDo List" />
 This is a ToDo list web app, created in React on Rails for the CVWO Winter Assignment 2019. 
 
 Name: Chow Jia Ying
