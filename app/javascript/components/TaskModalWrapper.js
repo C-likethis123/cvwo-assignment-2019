@@ -2,28 +2,15 @@ import React from "react";
 import { Button } from "semantic-ui-react";
 import TaskModal from "./TaskModal";
 
-class TaskModalWrapper extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div>
-        <Button className="add-button" onClick={() => this.props.handleOpen()}>
-          Add a Task
-        </Button>
-        {this.props.isModalOpen ? (
-          <TaskModal
-            isEditable={false}
-            isModalOpen={this.props.isModalOpen}
-            handleAdd={this.props.handleAdd}
-            handleClose={this.props.handleClose}
-          />
-        ) : null}
-      </div>
-    );
-  }
-}
+const TaskModalWrapper = (props) => {
+  return (
+    <div>
+      <Button className="add-button" onClick={props.handleOpen}>
+        Add a Task
+      </Button>
+      {props.isModalOpen ? <TaskModal isEditable={false} {...props} /> : null}
+    </div>
+  );
+};
 
 export default TaskModalWrapper;
