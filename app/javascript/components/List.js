@@ -18,30 +18,23 @@ class List extends React.Component {
   }
 
   handleAdd = (title, description, deadline, tags) => {
-    let task = JSON.stringify({
-      task: {
-        title,
-        description,
-        deadline,
-        isCompleted: false,
-        tags,
-        isDailies: this.props.title === "Dailies"
-      }
-    });
-
+    const task = {
+      title,
+      description,
+      deadline,
+      isCompleted: false,
+      tags,
+      isDailies: this.props.title === "Dailies",
+    };
     fetch(`/api/v1/lists/${this.props.id}/tasks`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: task
+      body: JSON.stringify({ task }),
     })
-      .then(response => response.json())
-      .then(task =>
-        this.setState(() => ({
-          tasks: this.state.tasks.concat(task)
-        }))
-      );
+      .then((response) => response.json())
+      .then((task) => this.props.addTask(task));
   };
 
   handleDelete = task => {
