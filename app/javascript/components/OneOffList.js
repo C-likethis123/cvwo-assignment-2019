@@ -1,8 +1,9 @@
 import React from "react";
 import List from "./List";
-import { addToDo, updateToDo } from "../actions";
+import { addToDo, updateToDo, deleteToDo } from "../actions";
 import { connect } from "react-redux";
 
+const isDailies = false;
 const mapStateToProps = (state) => {
   const [oneOffList] = state.lists.filter(
     (list) => list.title !== "Daily Tasks"
@@ -11,8 +12,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  addTask: (todo) => dispatch(addToDo(todo, false)),
-  updateTask: (todo) => dispatch(updateToDo(todo, false)),
+  addTask: (todo) => dispatch(addToDo(todo, isDailies)),
+  updateTask: (todo) => dispatch(updateToDo(todo, isDailies)),
+  deleteTask: (todo) => dispatch(deleteToDo(todo, isDailies)),
 });
 const ConnectedOneOffList = (props) => {
   return <List isDailies={true} title="Daily Tasks" {...props} />;

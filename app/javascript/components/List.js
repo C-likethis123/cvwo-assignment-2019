@@ -41,13 +41,9 @@ class List extends React.Component {
     fetch(`/api/v1/lists/${this.props.id}/tasks/${task.id}`, {
       method: "DELETE",
       headers: {
-        "Content-Type": "application/json"
-      }
-    }).then(() =>
-      this.setState({
-        tasks: this.state.tasks.filter(currTask => currTask.id !== task.id)
-      })
-    );
+        "Content-Type": "application/json",
+      },
+    }).then(() => this.props.deleteTask(task));
   };
 
   handleUpdate = task => {

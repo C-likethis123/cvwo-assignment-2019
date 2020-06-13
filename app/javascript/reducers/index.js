@@ -1,4 +1,4 @@
-import { ADD_TODO, UPDATE_TODO } from "../action-types";
+import { ADD_TODO, UPDATE_TODO, DELETE_TODO } from "../action-types";
 
 const initialState = {
   viewCompleted: false,
@@ -33,6 +33,23 @@ export function rootReducer(state = initialState, action) {
       );
       prevTasks[indexOfTask] = Object.assign({}, task);
       return { ...state, oneOffTasks: prevTasks };
+    }
+    case DELETE_TODO: {
+      const task = action.todo;
+      if (action.isDailies) {
+        return {
+          ...state,
+          dailyTasks: state.dailyTasks.filter(
+            (currTask) => currTask.id !== task.id
+          ),
+        };
+      }
+      return {
+        ...state,
+        oneOffTasks: state.oneOffTasks.filter(
+          (currTask) => currTask.id !== task.id
+        ),
+      };
     }
     default: {
       return state;
