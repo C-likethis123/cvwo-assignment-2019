@@ -1,17 +1,17 @@
 import React from "react";
-import List from "./List";
+import DailyList from "./DailyList";
+import OneOffList from "./OneOffList";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
   return { lists: state.lists };
 };
 
-const AllLists = ({ lists }) => {
+const AllLists = () => {
   return (
     <div className="list-display">
-      {lists.map((list) => {
-        return <List key={list.id} id={list.id} title={list.title} />;
-      })}
+      <DailyList />
+      <OneOffList />
     </div>
   );
 };
