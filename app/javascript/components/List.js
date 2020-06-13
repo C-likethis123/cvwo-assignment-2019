@@ -12,9 +12,7 @@ class List extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`/api/v1/lists/${this.props.id}/tasks.json`)
-      .then(response => response.json())
-      .then(data => this.setState(() => ({ tasks: data })));
+    this.props.loadTasks(this.props.id);
   }
 
   handleAdd = (title, description, deadline, tags) => {

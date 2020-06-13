@@ -1,4 +1,4 @@
-import { ADD_TODO, UPDATE_TODO, DELETE_TODO } from "../action-types";
+import { ADD_TODO, UPDATE_TODO, DELETE_TODO, LOAD_TODO } from "../action-types";
 
 const initialState = {
   viewCompleted: false,
@@ -50,6 +50,11 @@ export function rootReducer(state = initialState, action) {
           (currTask) => currTask.id !== task.id
         ),
       };
+    }
+    case LOAD_TODO: {
+      return action.isDailies
+        ? { ...state, dailyTasks: action.data }
+        : { ...state, oneOffTasks: action.data };
     }
     default: {
       return state;

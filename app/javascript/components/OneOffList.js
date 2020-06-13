@@ -1,6 +1,6 @@
 import React from "react";
 import List from "./List";
-import { addToDo, updateToDo, deleteToDo } from "../actions";
+import { addToDo, updateToDo, deleteToDo, loadToDo } from "../actions";
 import { connect } from "react-redux";
 
 const isDailies = false;
@@ -15,6 +15,7 @@ const mapDispatchToProps = (dispatch) => ({
   addTask: (todo) => dispatch(addToDo(todo, isDailies)),
   updateTask: (todo) => dispatch(updateToDo(todo, isDailies)),
   deleteTask: (todo) => dispatch(deleteToDo(todo, isDailies)),
+  loadTasks: (listId) => dispatch(loadToDo(listId, isDailies)),
 });
 const ConnectedOneOffList = (props) => {
   return <List isDailies={true} title="Daily Tasks" {...props} />;
