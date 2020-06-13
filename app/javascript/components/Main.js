@@ -3,6 +3,8 @@ import AllLists from "./AllLists";
 import { hot } from "react-hot-loader";
 import SearchOptions from "./SearchOptions";
 
+import { Provider } from "react-redux";
+import store from "../stores/index";
 
 const NavBar = (props) => {
   return <div id="app-title-container">
@@ -85,7 +87,7 @@ class Main extends React.Component {
 
   render() {
     return (
-      <div>
+      <Provider store={store}>
         <NavBar title="To Do List" />
         <SearchOptions
           toggleViewCompleted={this.toggleViewCompleted}
@@ -100,7 +102,7 @@ class Main extends React.Component {
           updateTagOptions={this.updateTagOptions}
           viewCompleted={this.state.viewCompleted}
         />
-      </div>
+      </Provider>
     );
   }
 }
