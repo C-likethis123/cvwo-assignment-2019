@@ -1,16 +1,19 @@
 import React from "react";
 import List from "./List";
+import { connect } from "react-redux";
 
-const AllLists = (props) => {
+const mapStateToProps = (state) => {
+  return { lists: state.lists };
+};
+
+const AllLists = ({ lists }) => {
   return (
     <div className="list-display">
-      {props.lists.map((list) => {
-        return (
-          <List key={list.id} id={list.id} title={list.title} {...props} />
-        );
+      {lists.map((list) => {
+        return <List key={list.id} id={list.id} title={list.title} />;
       })}
     </div>
   );
 };
 
-export default AllLists;
+export default connect(mapStateToProps)(AllLists);
