@@ -11,7 +11,10 @@ const initialState = {
 export function rootReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_TODO: {
-      return { ...state, lists: state.lists.concat(action.todo) };
+      if (action.isDailies) {
+        return { ...state, dailyTasks: state.dailyTasks.concat(action.todo) };
+      }
+      return { ...state, oneOffTasks: state.oneOffTasks.concat(action.todo) };
     }
     default: {
       return state;
