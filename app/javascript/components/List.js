@@ -56,22 +56,9 @@ class List extends React.Component {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ task: task })
-    })
-      .then(() => {
-        this.setState(prevState => {
-          const prevTasks = [...prevState.tasks];
-
-          const indexOfTask = prevTasks.findIndex(
-            currTask => currTask.id === task.id
-          );
-          prevTasks[indexOfTask] = Object.assign({}, task);
-          return {
-            tasks: prevTasks
-          };
-        });
-      })
-      .then(() => this.props.updateTagOptions());
+      body: JSON.stringify({ task: task }),
+    }).then(() => this.props.updateTask(task));
+    // .then(() => this.props.updateTagOptions());
   };
 
   handleOpen = () => {
