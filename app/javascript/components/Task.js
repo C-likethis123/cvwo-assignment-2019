@@ -47,12 +47,14 @@ class Task extends React.Component {
   };
 
   render() {
+    const props = this.props;
     const { title, description, tags, deadline, isCompleted } = this.props.task;
+
     return (
-      <div className="item" key={this.props.task.id}>
-        <Checkbox onClick={this.handleClick} checked={this.props.task.isCompleted}/>
+      <div className="item">
+        <Checkbox onClick={this.handleClick} checked={isCompleted} />
         <div className="content-display">
-          <div>{this.props.task.title}</div>
+          <div>{title}</div>
           <Description description={description} />
           <Deadline deadline={deadline} />
           <Tags tags={tags} />
@@ -66,20 +68,17 @@ class Task extends React.Component {
         <Button
           size="mini"
           color="red"
-          onClick={() => this.props.handleDelete(this.props.task)}
+          onClick={() => props.handleDelete(props.task)}
         >
           Delete
         </Button>
 
         {this.state.isModalOpen ? (
           <TaskModal
-            title={this.props.task.title}
-            description={this.props.task.description}
-            deadline={this.props.task.deadline}
-            tags={this.props.task.tags}
+            {...props.task}
             isEditable={true}
             isModalOpen={this.state.isModalOpen}
-            handleAdd={this.props.handleAdd}
+            handleAdd={props.handleAdd}
             updateTask={this.updateTask}
             handleClose={() => this.setState({ isModalOpen: false })}
           />
