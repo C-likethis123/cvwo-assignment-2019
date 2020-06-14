@@ -15,6 +15,9 @@ const Deadline = ({ deadline }) =>
     </div>
   ) : null;
 
+const Tags = ({ tags }) =>
+  tags ? <div className="other-info">Tags: {tags}</div> : null;
+
 class Task extends React.Component {
   constructor(props) {
     super(props);
@@ -52,9 +55,7 @@ class Task extends React.Component {
           <div>{this.props.task.title}</div>
           <Description description={description} />
           <Deadline deadline={deadline} />
-          {this.props.task.tags ? (
-            <div className="other-info">Tags: {this.props.task.tags}</div>
-          ) : null}
+          <Tags tags={tags} />
         </div>
         <Button
           size="mini"
