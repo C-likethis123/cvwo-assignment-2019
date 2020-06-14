@@ -7,82 +7,62 @@ import { Provider } from "react-redux";
 import store from "../stores/index";
 
 const NavBar = (props) => {
-  return <div id="app-title-container">
-    <h1 id="app-title">{props.title}</h1>
-  </div>
-}
+  return (
+    <div id="app-title-container">
+      <h1 id="app-title">{props.title}</h1>
+    </div>
+  );
+};
 
 class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      viewCompleted: false,
-      searchKeywords: "",
       searchTags: [],
       tagOptions: [],
-      lists: []
+      lists: [],
     };
   }
 
-  componentDidMount() {
-    fetch("/api/v1/lists.json")
-      .then(response => response.json())
-      .then(data => {
-        this.setState(() => ({ lists: data }));
-      }).then(()=> this.updateTagOptions());
-  }
-
-  updateSearchKeywords = searchKeywords => {
-    this.setState((prevProps, prevState) => {
-      return { searchKeywords: searchKeywords };
-    });
-  };
-
-  updateSearchTags = searchTags => {
+  updateSearchTags = (searchTags) => {
     this.setState((prevProps, prevState) => {
       return { searchTags: searchTags };
     });
   };
 
-  processTags = tags => {
+  processTags = (tags) => {
     return tags
       .split(", ")
-      .map(tag => tag.trim())
-      .filter(tag => tag !== "");
+      .map((tag) => tag.trim())
+      .filter((tag) => tag !== "");
   };
 
   updateTagOptions = () => {
     let tagOptions = [];
-    this.state.lists.forEach(list => {
+    this.state.lists.forEach((list) => {
       fetch(`/api/v1/lists/${list.id}/tasks.json`)
-        .then(response => response.json())
-        .then(data => {
-          data.forEach(task => {
+        .then((response) => response.json())
+        .then((data) => {
+          data.forEach((task) => {
             let tagsFromTasks = this.processTags(task.tags);
             tagOptions = tagOptions.concat(tagsFromTasks);
           });
           return tagOptions;
         })
-        .then(tagOptions => {
+        .then((tagOptions) => {
           tagOptions = [...new Set(tagOptions)];
-          tagOptions = tagOptions.map(tag => ({
+          tagOptions = tagOptions.map((tag) => ({
             key: tag,
             value: tag,
             text: tag,
-            label: { color: "red", empty: true, circular: true }
+            label: { color: "red", empty: true, circular: true },
           }));
 
           this.setState(() => ({
-            tagOptions: tagOptions
+            tagOptions: tagOptions,
           }));
         });
     });
-  };
-
-  toggleViewCompleted = () => {
-    this.setState(prevState => ({
-      viewCompleted: !prevState.viewCompleted
-    }));
   };
 
   render() {
@@ -90,8 +70,6 @@ class Main extends React.Component {
       <Provider store={store}>
         <NavBar title="To Do List" />
         <SearchOptions
-          toggleViewCompleted={this.toggleViewCompleted}
-          updateSearchKeywords={this.updateSearchKeywords}
           updateSearchTags={this.updateSearchTags}
           tagOptions={this.state.tagOptions}
         />
