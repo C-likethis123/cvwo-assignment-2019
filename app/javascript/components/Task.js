@@ -8,16 +8,19 @@ const Description = ({ description }) =>
     <div className="other-info">Description: {description}</div>
   ) : null;
 
+const Deadline = ({ deadline }) =>
+  deadline ? (
+    <div className="other-info">
+      Deadline: {dateformat(deadline, "dd/mm/yyyy")}
+    </div>
+  ) : null;
+
 class Task extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isModalOpen: false,
     };
-  }
-
-  displayDate(date) {
-    return dateformat(date, "dd/mm/yyyy");
   }
 
   handleClick = (e, { checked }) => {
@@ -48,11 +51,7 @@ class Task extends React.Component {
         <div className="content-display">
           <div>{this.props.task.title}</div>
           <Description description={description} />
-          {this.props.task.deadline ? (
-            <div className="other-info">
-              Deadline: {this.displayDate(this.props.task.deadline)}
-            </div>
-          ) : null}
+          <Deadline deadline={deadline} />
           {this.props.task.tags ? (
             <div className="other-info">Tags: {this.props.task.tags}</div>
           ) : null}
