@@ -5,6 +5,7 @@ import {
   LOAD_TODO,
   VISIBILITY_FILTER,
   KEYWORDS_FILTER,
+  UPDATE_TAGS,
 } from "../action-types";
 
 const initialState = {
@@ -68,6 +69,9 @@ export function rootReducer(state = initialState, action) {
     }
     case KEYWORDS_FILTER: {
       return { ...state, searchKeywords: action.keywords };
+    }
+    case TAGS_FILTER: {
+      return { ...state, searchTags: action.tags };
     }
     default: {
       return state;

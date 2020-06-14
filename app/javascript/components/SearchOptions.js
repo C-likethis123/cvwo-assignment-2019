@@ -2,7 +2,11 @@ import React from "react";
 import { Input, Radio } from "semantic-ui-react";
 import TagFilter from "./TagFilter";
 import { connect } from "react-redux";
-import { viewCompleted, updateSearchKeywords } from "./../actions/index";
+import {
+  viewCompleted,
+  updateSearchKeywords,
+  updateSearchTags,
+} from "./../actions/index";
 
 const mapStateToProps = (state) => {
   return {
@@ -15,6 +19,7 @@ const mapDispatchToProps = (dispatch) => {
     toggleViewCompleted: () => dispatch(viewCompleted),
     updateSearchKeywords: (keywords) =>
       dispatch(updateSearchKeywords(keywords)),
+    updateSearchTags: (tags) => dispatch(updateSearchTags(tags)),
   };
 };
 
