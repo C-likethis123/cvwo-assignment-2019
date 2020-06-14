@@ -3,6 +3,11 @@ import { Checkbox, Button, Icon } from "semantic-ui-react";
 import TaskModal from "./TaskModal";
 import dateformat from "dateformat";
 
+const Description = ({ description }) =>
+  description ? (
+    <div className="other-info">Description: {description}</div>
+  ) : null;
+
 class Task extends React.Component {
   constructor(props) {
     super(props);
@@ -36,16 +41,13 @@ class Task extends React.Component {
   };
 
   render() {
+    const { title, description, tags, deadline, isCompleted } = this.props.task;
     return (
       <div className="item" key={this.props.task.id}>
         <Checkbox onClick={this.handleClick} checked={this.props.task.isCompleted}/>
         <div className="content-display">
           <div>{this.props.task.title}</div>
-          {this.props.task.description ? (
-            <div className="other-info">
-              Description: {this.props.task.description}
-            </div>
-          ) : null}
+          <Description description={description} />
           {this.props.task.deadline ? (
             <div className="other-info">
               Deadline: {this.displayDate(this.props.task.deadline)}
