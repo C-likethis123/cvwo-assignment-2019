@@ -1,4 +1,11 @@
-import { ADD_TODO, UPDATE_TODO, DELETE_TODO, LOAD_TODO } from "../action-types";
+import {
+  ADD_TODO,
+  UPDATE_TODO,
+  DELETE_TODO,
+  LOAD_TODO,
+  VISIBILITY_FILTER,
+  KEYWORDS_FILTER,
+} from "../action-types";
 
 const initialState = {
   viewCompleted: false,
@@ -58,6 +65,9 @@ export function rootReducer(state = initialState, action) {
     }
     case VISIBILITY_FILTER: {
       return { ...state, viewCompleted: !state.viewCompleted };
+    }
+    case KEYWORDS_FILTER: {
+      return { ...state, searchKeywords: action.keywords };
     }
     default: {
       return state;

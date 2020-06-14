@@ -4,8 +4,20 @@ import { addToDo, updateToDo, deleteToDo, loadToDo } from "../actions";
 import { connect } from "react-redux";
 
 const isDailies = true;
-const getVisibleTasks = (tasks, isCompleted) => {
-  const visibleTasks = tasks.filter((task) => task.isCompleted === isCompleted);
+
+const matchesSearchKeywords = (task, searchKeywords) => {
+  const taskTitle = task.title.toLowerCase();
+  const taskDescription = task.description.toLowerCase();
+  return (
+    taskTitle.includes(searchKeywords) ||
+    taskDescription.includes(searchKeywords)
+  );
+};
+const getVisibleTasks = (tasks, isCompleted, searchKeywords) => {
+  const visibleTasks = tasks
+    .filter((task) => task.isCompleted === isCompleted)
+    .filter((task) => matchesSearchKeywords(task, searchKeywords));
+
   return visibleTasks;
 };
 const mapStateToProps = (state) => {
@@ -13,7 +25,11 @@ const mapStateToProps = (state) => {
     (list) => list.title === "Daily Tasks"
   );
   return {
-    tasks: getVisibleTasks(state.dailyTasks, state.viewCompleted),
+    tasks: getVisibleTasks(
+      state.dailyTasks,
+      state.viewCompleted,
+      state.searchKeywords
+    ),
     ...dailyList,
   };
 };

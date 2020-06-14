@@ -1,11 +1,13 @@
 import React from "react";
 import { Input, Dropdown, Radio } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { viewCompleted } from "./../actions/index";
+import { viewCompleted, updateSearchKeywords } from "./../actions/index";
 
 const mapDispatchToProps = (dispatch) => {
   return {
     toggleViewCompleted: () => dispatch(viewCompleted),
+    updateSearchKeywords: (keywords) =>
+      dispatch(updateSearchKeywords(keywords)),
   };
 };
 
