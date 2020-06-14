@@ -4,11 +4,18 @@ import { addToDo, updateToDo, deleteToDo, loadToDo } from "../actions";
 import { connect } from "react-redux";
 
 const isDailies = false;
+const getVisibleTasks = (tasks, isCompleted) => {
+  const visibleTasks = tasks.filter((task) => task.isCompleted === isCompleted);
+  return visibleTasks;
+};
 const mapStateToProps = (state) => {
   const [oneOffList] = state.lists.filter(
     (list) => list.title !== "Daily Tasks"
   );
-  return { tasks: state.oneOffTasks, ...oneOffList };
+  return {
+    tasks: getVisibleTasks(state.oneOffTasks, state.viewCompleted),
+    ...oneOffList,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => ({

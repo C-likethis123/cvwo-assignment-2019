@@ -1,4 +1,10 @@
-import { ADD_TODO, UPDATE_TODO, DELETE_TODO, LOAD_TODO } from "../action-types";
+import {
+  ADD_TODO,
+  UPDATE_TODO,
+  DELETE_TODO,
+  LOAD_TODO,
+  VISIBILITY_FILTER,
+} from "../action-types";
 export function addToDo(todo, isDailies) {
   return { type: ADD_TODO, todo, isDailies };
 }
@@ -18,3 +24,5 @@ export function loadToDo(listId, isDailies) {
       .then((data) => dispatch({ type: LOAD_TODO, data, isDailies }));
   };
 }
+
+export const viewCompleted = { type: VISIBILITY_FILTER };

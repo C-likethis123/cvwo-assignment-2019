@@ -1,7 +1,15 @@
 import React from "react";
 import { Input, Dropdown, Radio } from "semantic-ui-react";
+import { connect } from "react-redux";
+import { viewCompleted } from "./../actions/index";
 
-const SearchOptions = (props) => {
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleViewCompleted: () => dispatch(viewCompleted),
+  };
+};
+
+const ConnectedSearchOptions = (props) => {
   return (
     <div className="search-options">
       <Input
@@ -25,5 +33,7 @@ const SearchOptions = (props) => {
     </div>
   );
 };
+
+const SearchOptions = connect(null, mapDispatchToProps)(ConnectedSearchOptions);
 
 export default SearchOptions;

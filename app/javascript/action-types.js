@@ -4,3 +4,4 @@ export const DELETE_TODO = "DELETE_TODO";
 export const LOAD_TODO = "LOAD_TODO";
 export const TAGS_FILTER = "TAGS_FILTER";
 export const KEYWORDS_FILTER = "KEYWORDS_FILTER";
+export const VISIBILITY_FILTER = "VISIBILITY_FILTER";

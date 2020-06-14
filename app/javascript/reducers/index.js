@@ -56,6 +56,9 @@ export function rootReducer(state = initialState, action) {
         ? { ...state, dailyTasks: action.data }
         : { ...state, oneOffTasks: action.data };
     }
+    case VISIBILITY_FILTER: {
+      return { ...state, viewCompleted: !state.viewCompleted };
+    }
     default: {
       return state;
     }
