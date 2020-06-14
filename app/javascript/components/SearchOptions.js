@@ -1,7 +1,14 @@
 import React from "react";
-import { Input, Dropdown, Radio } from "semantic-ui-react";
+import { Input, Radio } from "semantic-ui-react";
+import TagFilter from "./TagFilter";
 import { connect } from "react-redux";
 import { viewCompleted, updateSearchKeywords } from "./../actions/index";
+
+const mapStateToProps = (state) => {
+  return {
+    searchTags: state.searchTags,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -19,14 +26,7 @@ const ConnectedSearchOptions = (props) => {
         placeholder="Search for tasks..."
         onChange={(event, data) => props.updateSearchKeywords(data.value)}
       />
-      <Dropdown
-        placeholder="Filter Tasks"
-        multiple
-        search
-        selection
-        options={props.tagOptions}
-        onChange={(event, data) => props.updateSearchTags(data.value)}
-      />
+      <TagFilter tags={props.searchTags} />
       <Radio
         toggle
         label="View completed tasks"
@@ -36,6 +36,9 @@ const ConnectedSearchOptions = (props) => {
   );
 };
 
-const SearchOptions = connect(null, mapDispatchToProps)(ConnectedSearchOptions);
+const SearchOptions = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ConnectedSearchOptions);
 
 export default SearchOptions;
