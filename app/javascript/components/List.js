@@ -67,15 +67,6 @@ class List extends React.Component {
     }));
   };
 
-  matchesSearchKeywords = (task, searchKeywords) => {
-    const taskTitle = task.title.toLowerCase();
-    const taskDescription = task.description.toLowerCase();
-    return (
-      taskTitle.includes(searchKeywords) ||
-      taskDescription.includes(searchKeywords)
-    );
-  };
-
   matchesSearchTags = (task, searchTags) => {
     const taskTags = task.tags.split(", ");
     const matchesSearchTags =
