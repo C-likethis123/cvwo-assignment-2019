@@ -7,8 +7,7 @@ class Task extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      task: Object.assign({}, this.props.task),
-      isModalOpen: false
+      isModalOpen: false,
     };
   }
 
@@ -17,33 +16,23 @@ class Task extends React.Component {
   }
 
   handleClick = (e, { checked }) => {
-    this.setState(
-      (prevState, prevProps) => ({
-        task: Object.assign(prevState.task, { isCompleted: checked })
-      }),
-      () => {
-        const updatedTask = Object.assign({}, this.state.task);
-        this.props.handleUpdate(updatedTask);
-      }
-    );
+    const updatedTask = {
+      ...this.props.task,
+      isCompleted: checked,
+    };
+    this.props.handleUpdate(updatedTask);
   };
 
   updateTask = (title, description, deadline, tags) => {
-    this.setState(
-      (prevState, prevProps) => {
-        return {
-          task: Object.assign(prevState.task, {
-            title: title,
-            description: description,
-            deadline: deadline,
-            tags: tags
-          })
-        };
-      },
-      () => {
-        this.props.handleUpdate(Object.assign({}, this.state.task));
-      }
-    );
+    const updatedTask = {
+      ...this.props.task,
+      title,
+      description,
+      deadline,
+      tags,
+    };
+
+    this.props.handleUpdate(updatedTask);
   };
 
   render() {
@@ -75,17 +64,17 @@ class Task extends React.Component {
         <Button
           size="mini"
           color="red"
-          onClick={() => this.props.handleDelete(this.state.task)}
+          onClick={() => this.props.handleDelete(this.props.task)}
         >
           Delete
         </Button>
 
         {this.state.isModalOpen ? (
           <TaskModal
-            title={this.state.task.title}
-            description={this.state.task.description}
-            deadline={this.state.task.deadline}
-            tags={this.state.task.tags}
+            title={this.props.task.title}
+            description={this.props.task.description}
+            deadline={this.props.task.deadline}
+            tags={this.props.task.tags}
             isEditable={true}
             isModalOpen={this.state.isModalOpen}
             handleAdd={this.props.handleAdd}
