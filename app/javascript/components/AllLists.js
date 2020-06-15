@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ConnectedList from "./ConnectedList";
 import { connect } from "react-redux";
+import { loadLists } from "../actions";
 
 const isDailies = (list) => list.title === "Daily Tasks";
 const mapStateToProps = (state) => {
   return { lists: state.lists };
 };
+const mapDispatchToProps = (dispatch) => ({
+  loadLists: () => dispatch(loadLists()),
+});
 
-const AllLists = ({ lists }) => {
+const AllLists = ({ lists, loadLists }) => {
+  console.log(lists);
+  useEffect(loadLists, lists.length > 0);
   return (
     <div className="list-display">
       {lists.map((list) => (
@@ -17,4 +23,4 @@ const AllLists = ({ lists }) => {
   );
 };
 
-export default connect(mapStateToProps)(AllLists);
+export default connect(mapStateToProps, mapDispatchToProps)(AllLists);

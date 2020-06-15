@@ -6,3 +6,4 @@ export const UPDATE_TAGS = "UPDATE_TAGS";
 export const TAGS_FILTER = "TAGS_FILTER";
 export const KEYWORDS_FILTER = "KEYWORDS_FILTER";
 export const VISIBILITY_FILTER = "VISIBILITY_FILTER";
+export const LOAD_LISTS = "LOAD_LISTS";

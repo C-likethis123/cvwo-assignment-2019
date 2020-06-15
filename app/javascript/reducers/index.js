@@ -7,6 +7,7 @@ import {
   KEYWORDS_FILTER,
   UPDATE_TAGS,
   TAGS_FILTER,
+  LOAD_LISTS,
 } from "../action-types";
 import { processTags } from "../utils";
 const initialState = {
@@ -87,6 +88,9 @@ export function rootReducer(state = initialState, action) {
         ...state,
         tagOptions: [...new Set([...tagOptions])],
       };
+    }
+    case LOAD_LISTS: {
+      return { ...state, lists: action.lists };
     }
     default: {
       return state;

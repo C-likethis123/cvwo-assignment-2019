@@ -7,6 +7,7 @@ import {
   KEYWORDS_FILTER,
   UPDATE_TAGS,
   TAGS_FILTER,
+  LOAD_LISTS,
 } from "../action-types";
 export function addToDo(todo, isDailies) {
   return [{ type: ADD_TODO, todo, isDailies }, updateFilterTags];
@@ -26,6 +27,15 @@ export function loadToDo(listId, isDailies) {
       .then((response) => response.json())
       .then((data) => dispatch({ type: LOAD_TODO, data, isDailies }))
       .then(() => dispatch(updateFilterTags));
+  };
+}
+
+export function loadLists() {
+  console.log("loading lists");
+  return function (dispatch) {
+    fetch(`/api/v1/lists.json`)
+      .then((response) => response.json())
+      .then((data) => dispatch({ type: LOAD_LISTS, lists: data }));
   };
 }
 
