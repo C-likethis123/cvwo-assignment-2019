@@ -6364,6 +6364,11 @@ redent@^1.0.0:
     indent-string "^2.1.0"
     strip-indent "^1.0.1"
 
+redux-sequence-action@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/redux-sequence-action/-/redux-sequence-action-0.2.1.tgz#5873de9aab1122ad19856367d137c3357809b372"
+  integrity sha1-WHPemqsRIq0ZhWNn0TfDNXgJs3I=
+
 redux-thunk@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.3.0.tgz#51c2c19a185ed5187aaa9a2d08b666d0d6467622"
