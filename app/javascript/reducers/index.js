@@ -6,6 +6,7 @@ import {
   VISIBILITY_FILTER,
   KEYWORDS_FILTER,
   UPDATE_TAGS,
+  TAGS_FILTER,
 } from "../action-types";
 
 const initialState = {
