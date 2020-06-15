@@ -12,7 +12,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const AllLists = ({ lists, loadLists }) => {
-  console.log(lists);
   useEffect(loadLists, lists.length > 0);
   return (
     <div className="list-display">

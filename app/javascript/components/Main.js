@@ -6,18 +6,18 @@ import SearchOptions from "./SearchOptions";
 import { Provider } from "react-redux";
 import store from "../stores/index";
 
-const NavBar = (props) => {
+const NavBar = () => {
   return (
     <div id="app-title-container">
-      <h1 id="app-title">{props.title}</h1>
+      <h1 id="app-title">To Do List</h1>
     </div>
   );
 };
 
-const Main = (props) => {
+const Main = () => {
   return (
     <Provider store={store}>
-      <NavBar title="To Do List" />
+      <NavBar />
       <SearchOptions />
       <AllLists />
     </Provider>

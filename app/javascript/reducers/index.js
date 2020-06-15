@@ -16,6 +16,8 @@ const initialState = {
   searchTags: [],
   tagOptions: [],
   lists: [],
+  dailyTasks: [],
+  oneOffTasks: [],
 };
 
 export function rootReducer(state = initialState, action) {

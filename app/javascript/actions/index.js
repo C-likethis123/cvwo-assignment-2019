@@ -31,7 +31,6 @@ export function loadToDo(listId, isDailies) {
 }
 
 export function loadLists() {
-  console.log("loading lists");
   return function (dispatch) {
     fetch(`/api/v1/lists.json`)
       .then((response) => response.json())
