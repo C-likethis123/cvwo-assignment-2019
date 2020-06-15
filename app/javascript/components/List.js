@@ -52,7 +52,6 @@ class List extends React.Component {
       },
       body: JSON.stringify({ task: task }),
     }).then(() => this.props.updateTask(task));
-    // .then(() => this.props.updateTagOptions());
   };
 
   handleOpen = () => {

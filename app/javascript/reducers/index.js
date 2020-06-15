@@ -73,6 +73,21 @@ export function rootReducer(state = initialState, action) {
     case TAGS_FILTER: {
       return { ...state, searchTags: action.tags };
     }
+    case UPDATE_TAGS: {
+      let tagOptions = [];
+      state.dailyTasks.forEach((task) => {
+        let tagsFromTasks = processTags(task.tags);
+        tagOptions = tagOptions.concat(tagsFromTasks);
+      });
+      state.oneOffTasks.forEach((task) => {
+        let tagsFromTasks = processTags(task.tags);
+        tagOptions = tagOptions.concat(tagsFromTasks);
+      });
+      return {
+        ...state,
+        tagOptions: [...new Set([...tagOptions])],
+      };
+    }
     default: {
       return state;
     }

@@ -6,6 +6,7 @@ import {
   VISIBILITY_FILTER,
   KEYWORDS_FILTER,
   UPDATE_TAGS,
+  TAGS_FILTER,
 } from "../action-types";
 export function addToDo(todo, isDailies) {
   return { type: ADD_TODO, todo, isDailies };
@@ -36,3 +37,5 @@ export function updateSearchKeywords(keywords) {
 export function updateSearchTags(tags) {
   return { type: TAGS_FILTER, tags };
 }
+
+export const updateFilterTags = { type: UPDATE_TAGS };
