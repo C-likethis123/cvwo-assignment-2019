@@ -10,7 +10,7 @@ import {
 
 const mapStateToProps = (state) => {
   return {
-    searchTags: state.searchTags,
+    tags: state.tagOptions,
   };
 };
 
@@ -31,7 +31,7 @@ const ConnectedSearchOptions = (props) => {
         placeholder="Search for tasks..."
         onChange={(event, data) => props.updateSearchKeywords(data.value)}
       />
-      <TagFilter tags={props.searchTags} />
+      <TagFilter tags={props.tags} updateSearchTags={props.updateSearchTags} />
       <Radio
         toggle
         label="View completed tasks"

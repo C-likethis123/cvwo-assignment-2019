@@ -1,7 +1,7 @@
 import React from "react";
 import { Dropdown } from "semantic-ui-react";
 
-const TagFilter = ({ tags }) => {
+const TagFilter = ({ tags, updateSearchTags }) => {
   const listOfTags = tags.map((tag) => ({
     key: tag,
     value: tag,
@@ -15,7 +15,7 @@ const TagFilter = ({ tags }) => {
       search
       selection
       options={listOfTags}
-      onChange={(_, data) => props.updateSearchTags(data.value)}
+      onChange={(_, data) => updateSearchTags(data.value)}
     />
   );
 };
