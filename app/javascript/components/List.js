@@ -6,8 +6,7 @@ class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tasks: [],
-      isModalOpen: false
+      isModalOpen: false,
     };
   }
 
@@ -35,7 +34,7 @@ class List extends React.Component {
       .then((task) => this.props.addTask(task));
   };
 
-  handleDelete = task => {
+  handleDelete = (task) => {
     fetch(`/api/v1/lists/${this.props.id}/tasks/${task.id}`, {
       method: "DELETE",
       headers: {
@@ -44,11 +43,11 @@ class List extends React.Component {
     }).then(() => this.props.deleteTask(task));
   };
 
-  handleUpdate = task => {
+  handleUpdate = (task) => {
     fetch(`/api/v1/lists/${this.props.id}/tasks/${task.id}`, {
       method: "PUT",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ task: task }),
     }).then(() => this.props.updateTask(task));
@@ -56,13 +55,13 @@ class List extends React.Component {
 
   handleOpen = () => {
     this.setState(() => ({
-      isModalOpen: true
+      isModalOpen: true,
     }));
   };
 
   handleClose = () => {
     this.setState(() => ({
-      isModalOpen: false
+      isModalOpen: false,
     }));
   };
 
@@ -71,28 +70,19 @@ class List extends React.Component {
     const matchesSearchTags =
       searchTags.length === 0
         ? true
-        : searchTags.some(tag => taskTags.includes(tag));
+        : searchTags.some((tag) => taskTags.includes(tag));
     return matchesSearchTags;
   };
 
   render() {
-    let tasks = [];
-    this.state.tasks.forEach(task => {
-      if (
-        task.isCompleted === this.props.viewCompleted &&
-        this.matchesSearchKeywords(task, this.props.searchKeywords) &&
-        this.matchesSearchTags(task, this.props.searchTags)
-      ) {
-        tasks.push(
-          <Task
-            key={task.id}
-            task={task}
-            handleDelete={this.handleDelete}
-            handleUpdate={this.handleUpdate}
-          />
-        );
-      }
-    });
+    const tasks = this.props.tasks.map((task) => (
+      <Task
+        key={task.id}
+        task={task}
+        handleDelete={this.handleDelete}
+        handleUpdate={this.handleUpdate}
+      />
+    ));
 
     return (
       <div className="todo-list" key={this.props.id}>

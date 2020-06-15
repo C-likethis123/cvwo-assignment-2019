@@ -8,7 +8,7 @@ import {
   UPDATE_TAGS,
   TAGS_FILTER,
 } from "../action-types";
-
+import { processTags } from "../utils";
 const initialState = {
   viewCompleted: false,
   searchKeywords: "",
@@ -33,7 +33,6 @@ export function rootReducer(state = initialState, action) {
           (currTask) => currTask.id === task.id
         );
         prevTasks[indexOfTask] = Object.assign({}, task);
-        console.log(prevTasks);
         return { ...state, dailyTasks: prevTasks };
       }
       const prevTasks = [...state.oneOffTasks];
