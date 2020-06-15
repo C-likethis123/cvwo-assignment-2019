@@ -3,15 +3,6 @@ import List from "./List";
 import { addToDo, updateToDo, deleteToDo, loadToDo } from "../actions";
 import { connect } from "react-redux";
 
-const matchesSearchKeywords = (task, searchKeywords) => {
-  const taskTitle = task.title.toLowerCase();
-  const taskDescription = task.description.toLowerCase();
-  return (
-    taskTitle.includes(searchKeywords) ||
-    taskDescription.includes(searchKeywords)
-  );
-};
-
 const getVisibleTasks = (tasks, isCompleted, searchKeywords) => {
   const visibleTasks = tasks
     .filter((task) => task.isCompleted === isCompleted)
