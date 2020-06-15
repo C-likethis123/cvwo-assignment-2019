@@ -14,39 +14,14 @@ const NavBar = (props) => {
   );
 };
 
-class Main extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      lists: [],
-    };
-  }
-
-  processTags = (tags) => {
-    return tags
-      .split(", ")
-      .map((tag) => tag.trim())
-      .filter((tag) => tag !== "");
-  };
-
-  render() {
-    return (
-      <Provider store={store}>
-        <NavBar title="To Do List" />
-        <SearchOptions
-          updateSearchTags={this.updateSearchTags}
-          tagOptions={this.state.tagOptions}
-        />
-        <AllLists
-          searchKeywords={this.state.searchKeywords}
-          searchTags={this.state.searchTags}
-          lists={this.state.lists}
-          updateTagOptions={this.updateTagOptions}
-          viewCompleted={this.state.viewCompleted}
-        />
-      </Provider>
-    );
-  }
-}
+const Main = (props) => {
+  return (
+    <Provider store={store}>
+      <NavBar title="To Do List" />
+      <SearchOptions />
+      <AllLists />
+    </Provider>
+  );
+};
 
 export default hot(module)(Main);
