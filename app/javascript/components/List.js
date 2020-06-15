@@ -65,15 +65,6 @@ class List extends React.Component {
     }));
   };
 
-  matchesSearchTags = (task, searchTags) => {
-    const taskTags = task.tags.split(", ");
-    const matchesSearchTags =
-      searchTags.length === 0
-        ? true
-        : searchTags.some((tag) => taskTags.includes(tag));
-    return matchesSearchTags;
-  };
-
   render() {
     const tasks = this.props.tasks.map((task) => (
       <Task
