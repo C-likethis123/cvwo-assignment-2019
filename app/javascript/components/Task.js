@@ -73,16 +73,14 @@ class Task extends React.Component {
           Delete
         </Button>
 
-        {this.state.isModalOpen ? (
-          <TaskModal
-            {...props.task}
-            isEditable={true}
-            isModalOpen={this.state.isModalOpen}
-            handleAdd={props.handleAdd}
-            updateTask={this.updateTask}
-            handleClose={() => this.setState({ isModalOpen: false })}
-          />
-        ) : null}
+        <TaskModal
+          {...props.task}
+          isEditable={true}
+          isModalOpen={this.state.isModalOpen}
+          handleAdd={props.handleAdd}
+          updateTask={this.updateTask}
+          handleClose={() => this.setState({ isModalOpen: false })}
+        />
       </div>
     );
   }
