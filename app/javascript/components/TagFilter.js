@@ -6,7 +6,6 @@ const TagFilter = ({ tags, updateSearchTags }) => {
     key: tag,
     value: tag,
     text: tag,
-    label: { color: "red", empty: true, circular: true },
   }));
   return (
     <Dropdown
