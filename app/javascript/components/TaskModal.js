@@ -1,33 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Modal, Button, Form, Input } from "semantic-ui-react";
 import DatePicker from "react-datepicker";
 import TagInput from "./TagInput";
 import { processTags, convertBackToString } from "../utils";
-class TaskModal extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isModalOpen: false,
-      title: this.props.title || "",
-      description: this.props.description || "",
-      deadline: this.props.deadline ? new Date(this.props.deadline) : undefined,
-      tags: processTags(this.props.tags) || [],
-    };
-  }
 
-  handleChange = () => {
-    const attribute = event.target.id;
-    const changedValue = event.target.value;
-    this.setState(() => ({
-      [attribute]: changedValue
-    }));
-  };
+const TaskModal = (props) => {
+  const [title, setTitle] = useState(props.title || "");
+  const [description, setDescription] = useState(props.description || "");
+  const [deadline, setDeadline] = useState(
+    props.deadline ? new Date(props.deadline) : undefined
+  );
+  const [tags, setTags] = useState(props.tags ? processTags(props.tags) : []);
 
-  changeTagInput = (data) => {
-    this.setState(() => ({
-      tags: data,
-    }));
-  };
+  const changeTitle = (event) => setTitle(event.target.value);
+  const changeDescription = (event) => setDescription(event.target.value);
+  const changeTagInput = (data) => setTags(data);
+  const changeDeadline = (date) => setDeadline(date ? new Date(date) : undefined);
 
   handleSubmit = () => {
     if (this.state.title) {
