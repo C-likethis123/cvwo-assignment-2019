@@ -23,10 +23,9 @@ const initialState = {
 export function rootReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_TODO: {
-      if (action.isDailies) {
-        return { ...state, dailyTasks: state.dailyTasks.concat(action.todo) };
-      }
-      return { ...state, oneOffTasks: state.oneOffTasks.concat(action.todo) };
+      return action.isDailies
+        ? { ...state, dailyTasks: state.dailyTasks.concat(action.todo) }
+        : { ...state, oneOffTasks: state.oneOffTasks.concat(action.todo) };
     }
     case UPDATE_TODO: {
       const task = action.todo;
@@ -47,20 +46,19 @@ export function rootReducer(state = initialState, action) {
     }
     case DELETE_TODO: {
       const task = action.todo;
-      if (action.isDailies) {
-        return {
-          ...state,
-          dailyTasks: state.dailyTasks.filter(
-            (currTask) => currTask.id !== task.id
-          ),
-        };
-      }
-      return {
-        ...state,
-        oneOffTasks: state.oneOffTasks.filter(
-          (currTask) => currTask.id !== task.id
-        ),
-      };
+      return action.isDailies
+        ? {
+            ...state,
+            dailyTasks: state.dailyTasks.filter(
+              (currTask) => currTask.id !== task.id
+            ),
+          }
+        : {
+            ...state,
+            oneOffTasks: state.oneOffTasks.filter(
+              (currTask) => currTask.id !== task.id
+            ),
+          };
     }
     case LOAD_TODO: {
       return action.isDailies
