@@ -88,7 +88,7 @@ export function rootReducer(state = initialState, action) {
       });
       return {
         ...state,
-        tagOptions: [...new Set([...tagOptions])],
+        tagOptions: [...new Set([...tagOptions])].sort(),
       };
     }
     case LOAD_LISTS: {
