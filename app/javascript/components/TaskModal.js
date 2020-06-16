@@ -1,7 +1,8 @@
 import React from "react";
 import { Modal, Button, Form, Input } from "semantic-ui-react";
 import DatePicker from "react-datepicker";
-
+import TagInput from "./TagInput";
+import { processTags, convertBackToString } from "../utils";
 class TaskModal extends React.Component {
   constructor(props) {
     super(props);
@@ -19,6 +20,12 @@ class TaskModal extends React.Component {
     const changedValue = event.target.value;
     this.setState(() => ({
       [attribute]: changedValue
+    }));
+  };
+
+  changeTagInput = (data) => {
+    this.setState(() => ({
+      tags: data,
     }));
   };
 
@@ -83,14 +90,7 @@ class TaskModal extends React.Component {
                   : this.setState({ deadline: undefined });
               }}
             />
-            <Form.Field
-              control={Input}
-              id="tags"
-              label="Tags"
-              value={this.state.tags}
-              placeholder="Enter tags, separated by commas and spaces (eg: tag1, tag2)"
-              onChange={this.handleChange}
-            />
+            <TagInput change={this.changeTagInput} tags={this.state.tags} />
             <Form.Group inline>
               <Form.Field control={Button} onClick={this.handleSubmit}>
                 Submit
