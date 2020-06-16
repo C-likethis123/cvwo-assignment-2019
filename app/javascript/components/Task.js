@@ -1,5 +1,5 @@
-import React from "react";
-import { Checkbox, Button, Icon } from "semantic-ui-react";
+import React, { useState } from "react";
+import { Checkbox, Button } from "semantic-ui-react";
 import TaskModal from "./TaskModal";
 import dateformat from "dateformat";
 
@@ -18,72 +18,64 @@ const Deadline = ({ deadline }) =>
 const Tags = ({ tags }) =>
   tags ? <div className="other-info">Tags: {tags}</div> : null;
 
-class Task extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isModalOpen: false,
-    };
-  }
+const Task = (props) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  handleClick = (e, { checked }) => {
+  const handleClick = (e, { checked }) => {
     const updatedTask = {
-      ...this.props.task,
+      ...props.task,
       isCompleted: checked,
     };
-    this.props.handleUpdate(updatedTask);
+    props.handleUpdate(updatedTask);
   };
 
-  updateTask = (title, description, deadline, tags) => {
+  const openModal = () => setIsModalOpen(true);
+
+  const closeModal = () => setIsModalOpen(false);
+
+  const updateTask = (title, description, deadline, tags) => {
     const updatedTask = {
-      ...this.props.task,
+      ...props.task,
       title,
       description,
       deadline,
       tags,
     };
 
-    this.props.handleUpdate(updatedTask);
+    props.handleUpdate(updatedTask);
   };
 
-  render() {
-    const props = this.props;
-    const { title, description, tags, deadline, isCompleted } = this.props.task;
-
-    return (
-      <div className="item">
-        <Checkbox onClick={this.handleClick} checked={isCompleted} />
-        <div className="content-display">
-          <div>{title}</div>
-          <Description description={description} />
-          <Deadline deadline={deadline} />
-          <Tags tags={tags} />
-        </div>
-        <Button
-          size="mini"
-          onClick={() => this.setState({ isModalOpen: true })}
-        >
-          Edit
-        </Button>
-        <Button
-          size="mini"
-          color="red"
-          onClick={() => props.handleDelete(props.task)}
-        >
-          Delete
-        </Button>
-
-        <TaskModal
-          {...props.task}
-          isEditable={true}
-          isModalOpen={this.state.isModalOpen}
-          handleAdd={props.handleAdd}
-          updateTask={this.updateTask}
-          handleClose={() => this.setState({ isModalOpen: false })}
-        />
+  const { title, description, tags, deadline, isCompleted } = props.task;
+  return (
+    <div className="item">
+      <Checkbox onClick={handleClick} checked={isCompleted} />
+      <div className="content-display">
+        <div>{title}</div>
+        <Description description={description} />
+        <Deadline deadline={deadline} />
+        <Tags tags={tags} />
       </div>
-    );
-  }
-}
+      <Button size="mini" onClick={openModal}>
+        Edit
+      </Button>
+      <Button
+        size="mini"
+        color="red"
+        onClick={() => props.handleDelete(props.task)}
+      >
+        Delete
+      </Button>
+
+      <TaskModal
+        {...props.task}
+        isEditable={true}
+        isModalOpen={isModalOpen}
+        handleAdd={props.handleAdd}
+        updateTask={updateTask}
+        handleClose={closeModal}
+      />
+    </div>
+  );
+};
 
 export default Task;
