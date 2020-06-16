@@ -11,7 +11,7 @@ class TaskModal extends React.Component {
       title: this.props.title || "",
       description: this.props.description || "",
       deadline: this.props.deadline ? new Date(this.props.deadline) : undefined,
-      tags: this.props.tags || ""
+      tags: processTags(this.props.tags) || [],
     };
   }
 
@@ -36,14 +36,14 @@ class TaskModal extends React.Component {
           this.state.title,
           this.state.description,
           this.state.deadline,
-          this.state.tags
+          convertBackToString(this.state.tags)
         );
       } else {
         this.props.handleAdd(
           this.state.title,
           this.state.description,
           this.state.deadline,
-          this.state.tags
+          convertBackToString(this.state.tags)
         );
       }
       this.props.handleClose();

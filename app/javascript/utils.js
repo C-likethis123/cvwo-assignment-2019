@@ -5,6 +5,10 @@ export const processTags = (tags) => {
     .filter((tag) => tag !== "");
 };
 
+export const convertBackToString = (tagArray) => {
+  return tagArray.join(", ");
+};
+
 export const matchesSearchTags = (task, searchTags) => {
   const taskTags = task.tags.split(", ");
   const matchesSearchTags =
