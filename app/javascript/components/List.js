@@ -82,13 +82,15 @@ class List extends React.Component {
         <Button className="add-button" onClick={this.handleOpen}>
           Add a Task
         </Button>
-        <TaskModal
-          isEditable={false}
-          handleAdd={this.handleAdd}
-          handleOpen={this.handleOpen}
-          handleClose={this.handleClose}
-          isModalOpen={this.state.isModalOpen}
-        />
+        {this.state.isModalOpen ? (
+          <TaskModal
+            isEditable={false}
+            handleAdd={this.handleAdd}
+            handleOpen={this.handleOpen}
+            handleClose={this.handleClose}
+            isModalOpen={this.state.isModalOpen}
+          />
+        ) : null}
       </div>
     );
   }

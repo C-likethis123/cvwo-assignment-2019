@@ -39,7 +39,7 @@ const TaskModal = (props) => {
   };
 
   return (
-    <Modal open={props.isModalOpen}>
+    <Modal open>
       <Modal.Header>{props.isEditable ? "Edit" : "Add"} a Task</Modal.Header>
       <Modal.Content>
         <Form>

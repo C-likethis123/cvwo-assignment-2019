@@ -66,14 +66,16 @@ const Task = (props) => {
         Delete
       </Button>
 
-      <TaskModal
-        {...props.task}
-        isEditable={true}
-        isModalOpen={isModalOpen}
-        handleAdd={props.handleAdd}
-        updateTask={updateTask}
-        handleClose={closeModal}
-      />
+      {isModalOpen ? (
+        <TaskModal
+          {...props.task}
+          isEditable={true}
+          isModalOpen={isModalOpen}
+          handleAdd={props.handleAdd}
+          updateTask={updateTask}
+          handleClose={closeModal}
+        />
+      ) : null}
     </div>
   );
 };
