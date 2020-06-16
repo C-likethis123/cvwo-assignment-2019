@@ -1,7 +1,7 @@
 import React from "react";
 import Task from "./Task";
-import TaskModalWrapper from "./TaskModalWrapper";
-
+import TaskModal from "./TaskModal";
+import { Button } from "semantic-ui-react";
 class List extends React.Component {
   constructor(props) {
     super(props);
@@ -79,7 +79,11 @@ class List extends React.Component {
       <div className="todo-list" key={this.props.id}>
         <div className="todo-list-title">{this.props.title}</div>
         <div className="items-container">{tasks}</div>
-        <TaskModalWrapper
+        <Button className="add-button" onClick={this.handleOpen}>
+          Add a Task
+        </Button>
+        <TaskModal
+          isEditable={false}
           handleAdd={this.handleAdd}
           handleOpen={this.handleOpen}
           handleClose={this.handleClose}
