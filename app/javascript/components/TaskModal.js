@@ -17,81 +17,73 @@ const TaskModal = (props) => {
   const changeTagInput = (data) => setTags(data);
   const changeDeadline = (date) => setDeadline(date ? new Date(date) : undefined);
 
-  handleSubmit = () => {
-    if (this.state.title) {
-      if (this.props.isEditable) {
-        this.props.updateTask(
-          this.state.title,
-          this.state.description,
-          this.state.deadline,
-          convertBackToString(this.state.tags)
+  const handleSubmit = () => {
+    if (title) {
+      if (props.isEditable) {
+        props.updateTask(
+          title,
+          description,
+          deadline,
+          convertBackToString(tags)
         );
       } else {
-        this.props.handleAdd(
-          this.state.title,
-          this.state.description,
-          this.state.deadline,
-          convertBackToString(this.state.tags)
+        props.handleAdd(
+          title,
+          description,
+          deadline,
+          convertBackToString(tags)
         );
       }
-      this.props.handleClose();
+      props.handleClose();
     }
   };
 
-  render() {
-    return (
-      <Modal open={this.props.isModalOpen}>
-        <Modal.Header>
-          {this.props.isEditable ? "Edit" : "Add"} a Task
-        </Modal.Header>
-        <Modal.Content>
-          <Form>
-            <Form.Field
-              required
-              control={Input}
-              id="title"
-              label="Title"
-              value={this.state.title}
-              placeholder="Enter your task here"
-              onChange={this.handleChange}
-            />
-            <Form.Field
-              control={Input}
-              id="description"
-              label="Description"
-              value={this.state.description}
-              placeholder="Enter the task description"
-              onChange={this.handleChange}
-            />
-            <Form.Field
-              control={DatePicker}
-              id="deadline"
-              label="Deadline"
-              autocomplete="off"
-              selected={this.state.deadline}
-              dateFormat="dd/MM/yyyy"
-              isClearable
-              placeholderText="Click to select a date"
-              onChange={date => {
-                date
-                  ? this.setState({ deadline: new Date(date) })
-                  : this.setState({ deadline: undefined });
-              }}
-            />
-            <TagInput change={this.changeTagInput} tags={this.state.tags} />
-            <Form.Group inline>
-              <Form.Field control={Button} onClick={this.handleSubmit}>
-                Submit
-              </Form.Field>
-              <Form.Field control={Button} onClick={this.props.handleClose}>
-                Cancel
-              </Form.Field>
-            </Form.Group>
-          </Form>
-        </Modal.Content>
-      </Modal>
-    );
-  }
-}
+  return (
+    <Modal open={props.isModalOpen}>
+      <Modal.Header>{props.isEditable ? "Edit" : "Add"} a Task</Modal.Header>
+      <Modal.Content>
+        <Form>
+          <Form.Field
+            required
+            control={Input}
+            id="title"
+            label="Title"
+            value={title}
+            placeholder="Enter your task here"
+            onChange={changeTitle}
+          />
+          <Form.Field
+            control={Input}
+            id="description"
+            label="Description"
+            value={description}
+            placeholder="Enter the task description"
+            onChange={changeDescription}
+          />
+          <Form.Field
+            control={DatePicker}
+            id="deadline"
+            label="Deadline"
+            autocomplete="off"
+            selected={deadline}
+            dateFormat="dd/MM/yyyy"
+            isClearable
+            placeholderText="Click to select a date"
+            onChange={changeDeadline}
+          />
+          <TagInput change={changeTagInput} tags={tags} />
+          <Form.Group inline>
+            <Form.Field control={Button} onClick={handleSubmit}>
+              Submit
+            </Form.Field>
+            <Form.Field control={Button} onClick={props.handleClose}>
+              Cancel
+            </Form.Field>
+          </Form.Group>
+        </Form>
+      </Modal.Content>
+    </Modal>
+  );
+};
 
 export default TaskModal;
