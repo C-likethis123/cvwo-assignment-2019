@@ -1,19 +1,7 @@
 import React from "react";
 import { Dropdown, Form } from "semantic-ui-react";
-import { connect } from "react-redux";
-const mapStateToProps = (state, { tags, change }) => {
-  return {
-    options: state.tagOptions.map((tag) => ({
-      key: tag,
-      text: tag,
-      value: tag,
-    })),
-    tags,
-    change,
-  };
-};
 
-const ConnectedTagInput = ({ options, tags, change }) => {
+const TagInput = ({ options, tags, change }) => {
   return (
     <Form.Field
       control={Dropdown}
@@ -26,7 +14,7 @@ const ConnectedTagInput = ({ options, tags, change }) => {
       multiple
       allowAdditions
       onAddItem={(_, data) => {
-        tagsToChooseFrom.push({
+        options.push({
           key: data.value,
           text: data.value,
           value: data.value,
@@ -39,5 +27,4 @@ const ConnectedTagInput = ({ options, tags, change }) => {
   );
 };
 
-const TagInput = connect(mapStateToProps)(ConnectedTagInput);
 export default TagInput;

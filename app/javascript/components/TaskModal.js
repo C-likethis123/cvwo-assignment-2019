@@ -3,8 +3,19 @@ import { Modal, Button, Form, Input } from "semantic-ui-react";
 import DatePicker from "react-datepicker";
 import TagInput from "./TagInput";
 import { processTags, convertBackToString } from "../utils";
+import { connect } from "react-redux";
+const mapStateToProps = (state, props) => {
+  return {
+    options: state.tagOptions.map((tag) => ({
+      key: tag,
+      text: tag,
+      value: tag,
+    })),
+    ...props,
+  };
+};
 
-const TaskModal = (props) => {
+const ConnectedTaskModal = (props) => {
   const [title, setTitle] = useState(props.title || "");
   const [description, setDescription] = useState(props.description || "");
   const [deadline, setDeadline] = useState(
@@ -71,7 +82,11 @@ const TaskModal = (props) => {
             placeholderText="Click to select a date"
             onChange={changeDeadline}
           />
-          <TagInput change={changeTagInput} tags={tags} />
+          <TagInput
+            change={changeTagInput}
+            tags={tags}
+            options={props.options}
+          />
           <Form.Group inline>
             <Form.Field control={Button} onClick={handleSubmit}>
               Submit
@@ -85,5 +100,5 @@ const TaskModal = (props) => {
     </Modal>
   );
 };
-
+const TaskModal = connect(mapStateToProps)(ConnectedTaskModal);
 export default TaskModal;
