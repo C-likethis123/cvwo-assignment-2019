@@ -13,6 +13,20 @@
   padding: 3%;
 }
 
+@media screen and (max-width: 768px) {
+  .list-display {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .todo-list {
+    width: 80%;
+    height: 70%;
+  }
+}
+
 .todo-list-title {
   background-color: #679fc4;
   color: black;
