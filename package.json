@@ -7,7 +7,7 @@
     "@rails/actioncable": "^6.0.0-alpha",
     "@rails/activestorage": "^6.0.0-alpha",
     "@rails/ujs": "^6.0.0-alpha",
-    "@rails/webpacker": "4.2.2",
+    "@rails/webpacker": "4.3.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "dateformat": "^3.0.3",
     "prop-types": "^15.7.2",
@@ -15,10 +15,10 @@
     "react-datepicker": "^2.16.0",
     "react-dom": "^16.12.0",
     "react-hot-loader": "^4.12.18",
-    "react_ujs": "^2.6.0",
-    "redux-sequence-action": "^0.2.1",
     "react-redux": "^7.2.0",
+    "react_ujs": "^2.6.0",
     "redux": "^4.0.5",
+    "redux-sequence-action": "^0.2.1",
     "redux-thunk": "^2.3.0",
     "semantic-ui-react": "^0.88.2",
     "turbolinks": "^5.2.0"
@@ -28,6 +28,6 @@
   },
   "version": "0.1.0",
   "devDependencies": {
-    "webpack-dev-server": "^3.9.0"
+    "webpack-dev-server": "^3.11.2"
   }
 }
