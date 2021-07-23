@@ -82,6 +82,7 @@ GEM
     concurrent-ruby (1.1.9)
     connection_pool (2.2.5)
     crass (1.0.6)
+    dry-cli (0.7.0)
     erubi (1.10.0)
     execjs (2.8.1)
     ffi (1.15.3)
@@ -191,6 +192,13 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    vite_rails (2.0.12)
+      railties (>= 5.1, < 8)
+      vite_ruby (~> 1.0)
+    vite_ruby (1.2.18)
+      dry-cli (~> 0.7.0)
+      rack-proxy (~> 0.6, >= 0.6.1)
+      zeitwerk (~> 2.2)
     web-console (4.1.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -230,6 +238,8 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
   tzinfo-data
+  vite_rails
+  vite_ruby
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)
