@@ -28,19 +28,21 @@ class List extends React.Component {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ task }),
+      body: JSON.stringify(task),
     })
       .then((response) => response.json())
       .then((task) => this.props.addTask(task));
   };
 
   handleDelete = (task) => {
-    fetch(`/api/v1/lists/${this.props.id}/tasks/${task.id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(() => this.props.deleteTask(task));
+    if (window.confirm("Are you sure you want to delete?")) {
+      fetch(`/api/v1/lists/${this.props.id}/tasks/${task.id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then(() => this.props.deleteTask(task));
+    }
   };
 
   handleUpdate = (task) => {
@@ -49,7 +51,7 @@ class List extends React.Component {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ task: task }),
+      body: JSON.stringify(task),
     }).then(() => this.props.updateTask(task));
   };
 
