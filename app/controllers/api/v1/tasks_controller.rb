@@ -1,7 +1,6 @@
 class Api::V1::TasksController < ApplicationController
     def index
-        @list = List.find(params[:list_id])
-        @tasks = @list.tasks
+        @tasks = Task.where(list_id: params[:list_id])
         render json: @tasks
     end
 
