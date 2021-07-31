@@ -1,29 +1,28 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Task from "./Task";
 import TaskModal from "./TaskModal";
-import { Button } from "semantic-ui-react";
-class List extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isModalOpen: false,
-    };
-  }
+import {Button} from "semantic-ui-react";
 
-  componentDidMount() {
-    this.props.loadTasks(this.props.id);
-  }
+/** Custom hooks */
+import useModalState from "../hooks/useModalState";
+const List = ({loadTasks, id, tasks, title: listTitle, addTask, deleteTask, updateTask}) => {
+  const {isModalOpen, handleOpen, handleClose} = useModalState();
 
-  handleAdd = (title, description, deadline, tags) => {
+  // Load lists when component first mounts
+  useEffect(() => {
+    loadTasks(id);
+  }, []);
+
+  const handleAdd = (title, description, deadline, tags) => {
     const task = {
       title,
       description,
       deadline,
       isCompleted: false,
       tags,
-      isDailies: this.props.title === "Dailies",
+      isDailies: listTitle === "Dailies",
     };
-    fetch(`/api/v1/lists/${this.props.id}/tasks`, {
+    fetch(`/api/v1/lists/${id}/tasks`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -31,71 +30,55 @@ class List extends React.Component {
       body: JSON.stringify(task),
     })
       .then((response) => response.json())
-      .then((task) => this.props.addTask(task));
+      .then((task) => addTask(task));
   };
-
-  handleDelete = (task) => {
+  const handleDelete = (task) => {
     if (window.confirm("Are you sure you want to delete?")) {
-      fetch(`/api/v1/lists/${this.props.id}/tasks/${task.id}`, {
+      fetch(`/api/v1/lists/${id}/tasks/${task.id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
-      }).then(() => this.props.deleteTask(task));
+      }).then(() => deleteTask(task));
     }
   };
-
-  handleUpdate = (task) => {
-    fetch(`/api/v1/lists/${this.props.id}/tasks/${task.id}`, {
+  const handleUpdate = (task) => {
+    fetch(`/api/v1/lists/${id}/tasks/${task.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(task),
-    }).then(() => this.props.updateTask(task));
+    }).then(() => updateTask(task));
   };
 
-  handleOpen = () => {
-    this.setState(() => ({
-      isModalOpen: true,
-    }));
-  };
+  const taskComponent = tasks.map((task) => (
+    <Task
+      key={task.id}
+      task={task}
+      handleDelete={handleDelete}
+      handleUpdate={handleUpdate}
+    />));
 
-  handleClose = () => {
-    this.setState(() => ({
-      isModalOpen: false,
-    }));
-  };
-
-  render() {
-    const tasks = this.props.tasks.map((task) => (
-      <Task
-        key={task.id}
-        task={task}
-        handleDelete={this.handleDelete}
-        handleUpdate={this.handleUpdate}
-      />
-    ));
-
-    return (
-      <div className="todo-list" key={this.props.id}>
-        <div className="todo-list-title">{this.props.title}</div>
-        <div className="items-container">{tasks}</div>
-        <Button className="add-button" onClick={this.handleOpen}>
-          Add a Task
-        </Button>
-        {this.state.isModalOpen ? (
-          <TaskModal
-            isEditable={false}
-            handleAdd={this.handleAdd}
-            handleOpen={this.handleOpen}
-            handleClose={this.handleClose}
-            isModalOpen={this.state.isModalOpen}
-          />
-        ) : null}
-      </div>
-    );
-  }
+  return (
+    <div className="todo-list" key={id}>
+      <div className="todo-list-title">{listTitle}</div>
+      <div className="items-container">{taskComponent}</div>
+      <Button className="add-button" onClick={handleOpen}>
+        Add a Task
+      </Button>
+      {isModalOpen && (
+        <TaskModal
+          isEditable={false}
+          handleAdd={handleAdd}
+          handleOpen={handleOpen}
+          handleClose={handleClose}
+          isModalOpen={isModalOpen}
+        />
+      )}
+    </div>
+  );
 }
 
 export default List;
+
