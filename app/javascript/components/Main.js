@@ -1,9 +1,8 @@
 import React from "react";
 import AllLists from "./AllLists";
-import { hot } from "react-hot-loader";
 import SearchOptions from "./SearchOptions";
 
-import { Provider } from "react-redux";
+import {Provider} from "react-redux";
 import store from "../stores/index";
 
 const NavBar = () => {
@@ -24,4 +23,4 @@ const Main = () => {
   );
 };
 
-export default hot(module)(Main);
+export default Main;
