@@ -42,7 +42,7 @@ class Api::V1::ListsController < ApplicationController
         isCompleted: false,
         tags: "",
         deadline: nil,
-        isDailies: true})
+        isDailies: false})
 
         return [dailyList, oneOffList]
     end
