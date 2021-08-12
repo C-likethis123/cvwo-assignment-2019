@@ -73,7 +73,6 @@ const List = ({loadTasks, id, tasks, title: listTitle, addTask, deleteTask, upda
           handleAdd={handleAdd}
           handleOpen={handleOpen}
           handleClose={handleClose}
-          isModalOpen={isModalOpen}
         />
       )}
     </div>

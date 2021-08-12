@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { Modal, Button, Form, Input } from "semantic-ui-react";
+import React, {useState} from "react";
+import {Modal, Button, Form, Input} from "semantic-ui-react";
 import DatePicker from "react-datepicker";
 import TagInput from "./TagInput";
-import { processTags, convertBackToString } from "../utils";
-import { connect } from "react-redux";
+import {processTags, convertBackToString} from "../utils";
+import {connect} from "react-redux";
 const mapStateToProps = (state, props) => {
   return {
     options: state.tagOptions.map((tag) => ({

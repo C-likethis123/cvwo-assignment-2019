@@ -1,37 +1,36 @@
-import React, { useState } from "react";
-import { Checkbox, Button } from "semantic-ui-react";
+import React, {useState} from "react";
+import {Checkbox, Button} from "semantic-ui-react";
 import TaskModal from "./TaskModal";
 import dateformat from "dateformat";
 
-const Description = ({ description }) =>
+/** Hooks */
+import useModalState from "../hooks/useModalState";
+
+const Description = ({description}) =>
   description ? (
     <div className="other-info">Description: {description}</div>
   ) : null;
 
-const Deadline = ({ deadline }) =>
+const Deadline = ({deadline}) =>
   deadline ? (
     <div className="other-info">
       Deadline: {dateformat(deadline, "dd/mm/yyyy")}
     </div>
   ) : null;
 
-const Tags = ({ tags }) =>
+const Tags = ({tags}) =>
   tags ? <div className="other-info">Tags: {tags}</div> : null;
 
 const Task = (props) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const {isModalOpen, handleOpen, handleClose} = useModalState();
 
-  const handleClick = (e, { checked }) => {
+  const handleClick = (e, {checked}) => {
     const updatedTask = {
       ...props.task,
       isCompleted: checked,
     };
     props.handleUpdate(updatedTask);
   };
-
-  const openModal = () => setIsModalOpen(true);
-
-  const closeModal = () => setIsModalOpen(false);
 
   const updateTask = (title, description, deadline, tags) => {
     const updatedTask = {
@@ -45,7 +44,7 @@ const Task = (props) => {
     props.handleUpdate(updatedTask);
   };
 
-  const { title, description, tags, deadline, isCompleted } = props.task;
+  const {title, description, tags, deadline, isCompleted} = props.task;
   return (
     <div className="item">
       <Checkbox onClick={handleClick} checked={isCompleted} />
@@ -55,7 +54,7 @@ const Task = (props) => {
         <Deadline deadline={deadline} />
         <Tags tags={tags} />
       </div>
-      <Button size="mini" onClick={openModal}>
+      <Button size="mini" onClick={handleOpen}>
         Edit
       </Button>
       <Button
@@ -66,16 +65,15 @@ const Task = (props) => {
         Delete
       </Button>
 
-      {isModalOpen ? (
+      {isModalOpen && (
         <TaskModal
           {...props.task}
           isEditable={true}
-          isModalOpen={isModalOpen}
           handleAdd={props.handleAdd}
           updateTask={updateTask}
-          handleClose={closeModal}
+          handleClose={handleClose}
         />
-      ) : null}
+      )}
     </div>
   );
 };
